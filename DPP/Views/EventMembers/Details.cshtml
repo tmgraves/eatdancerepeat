@@ -1,0 +1,58 @@
+﻿@model DPP.Models.EventMember
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EventMember</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AttendeeStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttendeeStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Organizer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Organizer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JoinDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JoinDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.EventType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.EventType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EventMemberID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
