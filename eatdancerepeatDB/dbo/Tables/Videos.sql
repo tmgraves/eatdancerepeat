@@ -5,7 +5,8 @@
 	[PlaceID] [int] NULL,
 	[UserID] [int] NULL,
 	[EventID] [int] NULL,
-	[TeamID] [int] NULL,
+	[GroupID] [int] NULL,
+	[StyleID] [int] NULL,
 	[VideoDate] [date] NOT NULL,
  CONSTRAINT [PK_Videos] PRIMARY KEY CLUSTERED 
 (
@@ -13,33 +14,40 @@
 )WITH (STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF)
 )
 GO
-/****** Object:  ForeignKey [FK_Videos_Events]    Script Date: 06/17/2014 02:51:17 ******/
+/****** Object:  ForeignKey [FK_Videos_Events]    Script Date: 06/21/2014 22:12:56 ******/
 ALTER TABLE [dbo].[Videos]  WITH CHECK ADD  CONSTRAINT [FK_Videos_Events] FOREIGN KEY([EventID])
 REFERENCES [dbo].[Events] ([EventID])
 GO
 
 ALTER TABLE [dbo].[Videos] CHECK CONSTRAINT [FK_Videos_Events]
 GO
-/****** Object:  ForeignKey [FK_Videos_Places]    Script Date: 06/17/2014 02:51:17 ******/
+/****** Object:  ForeignKey [FK_Videos_Groups]    Script Date: 06/21/2014 22:12:56 ******/
+ALTER TABLE [dbo].[Videos]  WITH CHECK ADD  CONSTRAINT [FK_Videos_Groups] FOREIGN KEY([GroupID])
+REFERENCES [dbo].[Groups] ([GroupID])
+GO
+
+ALTER TABLE [dbo].[Videos] CHECK CONSTRAINT [FK_Videos_Groups]
+GO
+/****** Object:  ForeignKey [FK_Videos_Places]    Script Date: 06/21/2014 22:12:56 ******/
 ALTER TABLE [dbo].[Videos]  WITH CHECK ADD  CONSTRAINT [FK_Videos_Places] FOREIGN KEY([PlaceID])
 REFERENCES [dbo].[Places] ([PlaceID])
 GO
 
 ALTER TABLE [dbo].[Videos] CHECK CONSTRAINT [FK_Videos_Places]
 GO
-/****** Object:  ForeignKey [FK_Videos_Teams]    Script Date: 06/17/2014 02:51:17 ******/
-ALTER TABLE [dbo].[Videos]  WITH CHECK ADD  CONSTRAINT [FK_Videos_Teams] FOREIGN KEY([TeamID])
-REFERENCES [dbo].[Teams] ([TeamID])
+/****** Object:  ForeignKey [FK_Videos_Styles]    Script Date: 06/21/2014 22:12:56 ******/
+ALTER TABLE [dbo].[Videos]  WITH CHECK ADD  CONSTRAINT [FK_Videos_Styles] FOREIGN KEY([StyleID])
+REFERENCES [dbo].[Styles] ([StyleID])
 GO
 
-ALTER TABLE [dbo].[Videos] CHECK CONSTRAINT [FK_Videos_Teams]
+ALTER TABLE [dbo].[Videos] CHECK CONSTRAINT [FK_Videos_Styles]
 GO
-/****** Object:  ForeignKey [FK_Videos_Users]    Script Date: 06/17/2014 02:51:17 ******/
+/****** Object:  ForeignKey [FK_Videos_Users]    Script Date: 06/21/2014 22:12:56 ******/
 ALTER TABLE [dbo].[Videos]  WITH CHECK ADD  CONSTRAINT [FK_Videos_Users] FOREIGN KEY([UserID])
 REFERENCES [dbo].[Users] ([UserID])
 GO
 
 ALTER TABLE [dbo].[Videos] CHECK CONSTRAINT [FK_Videos_Users]
 GO
-/****** Object:  Default [DF_Videos_VideoDate]    Script Date: 06/17/2014 02:51:17 ******/
+/****** Object:  Default [DF_Videos_VideoDate]    Script Date: 06/21/2014 22:12:56 ******/
 ALTER TABLE [dbo].[Videos] ADD  CONSTRAINT [DF_Videos_VideoDate]  DEFAULT (getdate()) FOR [VideoDate]

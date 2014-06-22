@@ -20,18 +20,26 @@
 	[ParentEventID] [int] NULL,
 	[Frequency] [int] NULL,
 	[DaysOfWeek] [varchar](200) NULL,
+	[GroupID] [int] NULL,
  CONSTRAINT [PK_Events] PRIMARY KEY CLUSTERED 
 (
 	[EventID] ASC
 )WITH (STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF)
 )
 GO
-/****** Object:  ForeignKey [FK_Events_Events]    Script Date: 06/17/2014 02:51:17 ******/
+/****** Object:  ForeignKey [FK_Events_Events]    Script Date: 06/21/2014 22:12:56 ******/
 ALTER TABLE [dbo].[Events]  WITH CHECK ADD  CONSTRAINT [FK_Events_Events] FOREIGN KEY([ParentEventID])
 REFERENCES [dbo].[Events] ([EventID])
 GO
 
 ALTER TABLE [dbo].[Events] CHECK CONSTRAINT [FK_Events_Events]
 GO
-/****** Object:  Default [DF_Events_AllDay]    Script Date: 06/17/2014 02:51:17 ******/
+/****** Object:  ForeignKey [FK_Events_Groups]    Script Date: 06/21/2014 22:12:56 ******/
+ALTER TABLE [dbo].[Events]  WITH CHECK ADD  CONSTRAINT [FK_Events_Groups] FOREIGN KEY([GroupID])
+REFERENCES [dbo].[Groups] ([GroupID])
+GO
+
+ALTER TABLE [dbo].[Events] CHECK CONSTRAINT [FK_Events_Groups]
+GO
+/****** Object:  Default [DF_Events_AllDay]    Script Date: 06/21/2014 22:12:56 ******/
 ALTER TABLE [dbo].[Events] ADD  CONSTRAINT [DF_Events_AllDay]  DEFAULT ((0)) FOR [AllDay]
