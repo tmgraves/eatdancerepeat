@@ -11,8 +11,6 @@ namespace DPP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class User
     {
@@ -20,39 +18,28 @@ namespace DPP.Models
         {
             this.Comments = new HashSet<Comment>();
             this.EventMembers = new HashSet<EventMember>();
+            this.GroupMembers = new HashSet<GroupMember>();
             this.Pictures = new HashSet<Picture>();
+            this.Pictures1 = new HashSet<Picture>();
             this.Reviews = new HashSet<Review>();
             this.Reviews1 = new HashSet<Review>();
-            this.TeamMembers = new HashSet<TeamMember>();
             this.Videos = new HashSet<Video>();
         }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
+    
         public int UserID { get; set; }
-        [Required]
-        [StringLength(50)]
-        [Display(Name = "First Name")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
         public string FirstName { get; set; }
-        [Required]
-        [StringLength(50)]
-        [Display(Name = "Last Name")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
         public string LastName { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime JoinDate { get; set; }
-
-        public bool Teacher { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual Dancer Dancer { get; set; }
         public virtual ICollection<EventMember> EventMembers { get; set; }
+        public virtual ICollection<GroupMember> GroupMembers { get; set; }
         public virtual ICollection<Picture> Pictures { get; set; }
+        public virtual ICollection<Picture> Pictures1 { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Review> Reviews1 { get; set; }
-        public virtual ICollection<TeamMember> TeamMembers { get; set; }
+        public virtual Teacher Teacher { get; set; }
         public virtual ICollection<Video> Videos { get; set; }
     }
 }

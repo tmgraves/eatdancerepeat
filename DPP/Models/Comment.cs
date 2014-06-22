@@ -11,7 +11,6 @@ namespace DPP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Comment
     {
@@ -19,18 +18,18 @@ namespace DPP.Models
         public Nullable<int> UserID { get; set; }
         public Nullable<int> PlaceID { get; set; }
         public Nullable<int> EventID { get; set; }
-        public Nullable<int> TeamID { get; set; }
+        public Nullable<int> GroupID { get; set; }
         public Nullable<int> PictureID { get; set; }
         public Nullable<int> VideoID { get; set; }
+        public Nullable<int> StyleID { get; set; }
         public string Comment1 { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime CommentDateTime { get; set; }
     
         public virtual Event Event { get; set; }
+        public virtual Group Group { get; set; }
         public virtual Picture Picture { get; set; }
         public virtual Place Place { get; set; }
-        public virtual Team Team { get; set; }
+        public virtual Style Style { get; set; }
         public virtual User User { get; set; }
         public virtual Video Video { get; set; }
     }

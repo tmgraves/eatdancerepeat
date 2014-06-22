@@ -11,7 +11,6 @@ namespace DPP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Event
     {
@@ -20,9 +19,10 @@ namespace DPP.Models
             this.Comments = new HashSet<Comment>();
             this.EventMembers = new HashSet<EventMember>();
             this.Events1 = new HashSet<Event>();
+            this.EventStyles = new HashSet<EventStyle>();
+            this.GroupEvents = new HashSet<GroupEvent>();
             this.Pictures = new HashSet<Picture>();
             this.Reviews = new HashSet<Review>();
-            this.TeamEvents = new HashSet<TeamEvent>();
             this.Videos = new HashSet<Video>();
         }
     
@@ -30,11 +30,7 @@ namespace DPP.Models
         public string EventType { get; set; }
         public string EventName { get; set; }
         public string Description { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime StartDate { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime EndDate { get; set; }
         public Nullable<System.TimeSpan> StartTime { get; set; }
         public Nullable<System.TimeSpan> EndTime { get; set; }
@@ -51,14 +47,17 @@ namespace DPP.Models
         public Nullable<int> ParentEventID { get; set; }
         public Nullable<int> Frequency { get; set; }
         public string DaysOfWeek { get; set; }
+        public Nullable<int> GroupID { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<EventMember> EventMembers { get; set; }
         public virtual ICollection<Event> Events1 { get; set; }
         public virtual Event Event1 { get; set; }
+        public virtual ICollection<EventStyle> EventStyles { get; set; }
+        public virtual ICollection<GroupEvent> GroupEvents { get; set; }
         public virtual ICollection<Picture> Pictures { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
-        public virtual ICollection<TeamEvent> TeamEvents { get; set; }
         public virtual ICollection<Video> Videos { get; set; }
+        public virtual Group Group { get; set; }
     }
 }

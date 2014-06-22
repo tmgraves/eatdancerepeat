@@ -11,7 +11,6 @@ namespace DPP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Picture
     {
@@ -22,19 +21,19 @@ namespace DPP.Models
     
         public int PictureID { get; set; }
         public string PictureName { get; set; }
+        public int PostUserID { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<int> PlaceID { get; set; }
         public Nullable<int> EventID { get; set; }
-        public Nullable<int> TeamID { get; set; }
+        public Nullable<int> GroupID { get; set; }
         public string Link { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime PictureDate { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual Event Event { get; set; }
+        public virtual Group Group { get; set; }
         public virtual Place Place { get; set; }
-        public virtual Team Team { get; set; }
         public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

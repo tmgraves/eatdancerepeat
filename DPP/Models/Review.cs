@@ -11,23 +11,24 @@ namespace DPP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Review
     {
         public int ReviewID { get; set; }
         public int AuthorUserID { get; set; }
         public string Review1 { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime ReviewDate { get; set; }
         public double Stars { get; set; }
         public Nullable<int> EventID { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<int> PlaceID { get; set; }
+        public Nullable<int> GroupID { get; set; }
+        public Nullable<int> StyleID { get; set; }
     
         public virtual Event Event { get; set; }
+        public virtual Group Group { get; set; }
         public virtual Place Place { get; set; }
+        public virtual Style Style { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
     }

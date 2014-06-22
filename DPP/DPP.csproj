@@ -160,75 +160,99 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
-    <Compile Include="Controllers\EventMembersController.cs" />
-    <Compile Include="Controllers\EventsController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PicturesController.cs" />
-    <Compile Include="Controllers\PlacesController.cs" />
-    <Compile Include="Controllers\RehearsalsController.cs" />
-    <Compile Include="Controllers\ReviewsController.cs" />
-    <Compile Include="Controllers\TeamEventsController.cs" />
-    <Compile Include="Controllers\TeamMembersController.cs" />
-    <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\StylesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Class.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Comment.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAPModel.Context.cs">
+    <Compile Include="Models\Concert.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Conference.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DanceModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DAPModel.Context.tt</DependentUpon>
+      <DependentUpon>DanceModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAPModel.cs">
+    <Compile Include="Models\DanceModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DAPModel.tt</DependentUpon>
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAPModel.Designer.cs">
+    <Compile Include="Models\DanceModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DAPModel.edmx</DependentUpon>
+      <DependentUpon>DanceModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dancer.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Event.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EventMember.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventStyle.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Group.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupEvent.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupMember.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupRehearsal.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupStyle.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\OpenHouse.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Party.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Picture.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Place.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Rehearsal.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Review.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Team.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+    <Compile Include="Models\Social.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TeamEvent.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+    <Compile Include="Models\Style.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TeamMember.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+    <Compile Include="Models\Teacher.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Video.cs">
-      <DependentUpon>DAPModel.tt</DependentUpon>
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Workshop.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -241,22 +265,22 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\DAPModel.edmx">
+    <EntityDeploy Include="Models\DanceModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DAPModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DanceModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DAPModel.Context.tt">
+    <Content Include="Models\DanceModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DAPModel.edmx</DependentUpon>
-      <LastGenOutput>DAPModel.Context.cs</LastGenOutput>
+      <DependentUpon>DanceModel.edmx</DependentUpon>
+      <LastGenOutput>DanceModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DAPModel.edmx.diagram">
-      <DependentUpon>DAPModel.edmx</DependentUpon>
+    <Content Include="Models\DanceModel.edmx.diagram">
+      <DependentUpon>DanceModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\DAPModel.tt">
+    <Content Include="Models\DanceModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DAPModel.edmx</DependentUpon>
-      <LastGenOutput>DAPModel.cs</LastGenOutput>
+      <DependentUpon>DanceModel.edmx</DependentUpon>
+      <LastGenOutput>DanceModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\eatdancerepeat - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\eatdancerepeat - Web Deploy.pubxml" />
@@ -307,61 +331,11 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Comments\Create.cshtml" />
-    <Content Include="Views\Comments\Delete.cshtml" />
-    <Content Include="Views\Comments\Details.cshtml" />
-    <Content Include="Views\Comments\Edit.cshtml" />
-    <Content Include="Views\Comments\Index.cshtml" />
-    <Content Include="Views\Events\Create.cshtml" />
-    <Content Include="Views\Events\Delete.cshtml" />
-    <Content Include="Views\Events\Details.cshtml" />
-    <Content Include="Views\Events\Edit.cshtml" />
-    <Content Include="Views\Events\Index.cshtml" />
-    <Content Include="Views\EventMembers\Create.cshtml" />
-    <Content Include="Views\EventMembers\Delete.cshtml" />
-    <Content Include="Views\EventMembers\Details.cshtml" />
-    <Content Include="Views\EventMembers\Edit.cshtml" />
-    <Content Include="Views\EventMembers\Index.cshtml" />
-    <Content Include="Views\Pictures\Create.cshtml" />
-    <Content Include="Views\Pictures\Delete.cshtml" />
-    <Content Include="Views\Pictures\Details.cshtml" />
-    <Content Include="Views\Pictures\Edit.cshtml" />
-    <Content Include="Views\Pictures\Index.cshtml" />
-    <Content Include="Views\Places\Create.cshtml" />
-    <Content Include="Views\Places\Delete.cshtml" />
-    <Content Include="Views\Places\Details.cshtml" />
-    <Content Include="Views\Places\Edit.cshtml" />
-    <Content Include="Views\Places\Index.cshtml" />
-    <Content Include="Views\Rehearsals\Create.cshtml" />
-    <Content Include="Views\Rehearsals\Delete.cshtml" />
-    <Content Include="Views\Rehearsals\Details.cshtml" />
-    <Content Include="Views\Rehearsals\Edit.cshtml" />
-    <Content Include="Views\Rehearsals\Index.cshtml" />
-    <Content Include="Views\Reviews\Create.cshtml" />
-    <Content Include="Views\Reviews\Delete.cshtml" />
-    <Content Include="Views\Reviews\Details.cshtml" />
-    <Content Include="Views\Reviews\Edit.cshtml" />
-    <Content Include="Views\Reviews\Index.cshtml" />
-    <Content Include="Views\Teams\Create.cshtml" />
-    <Content Include="Views\Teams\Delete.cshtml" />
-    <Content Include="Views\Teams\Details.cshtml" />
-    <Content Include="Views\Teams\Edit.cshtml" />
-    <Content Include="Views\Teams\Index.cshtml" />
-    <Content Include="Views\TeamEvents\Create.cshtml" />
-    <Content Include="Views\TeamEvents\Delete.cshtml" />
-    <Content Include="Views\TeamEvents\Details.cshtml" />
-    <Content Include="Views\TeamEvents\Edit.cshtml" />
-    <Content Include="Views\TeamEvents\Index.cshtml" />
-    <Content Include="Views\TeamMembers\Create.cshtml" />
-    <Content Include="Views\TeamMembers\Delete.cshtml" />
-    <Content Include="Views\TeamMembers\Details.cshtml" />
-    <Content Include="Views\TeamMembers\Edit.cshtml" />
-    <Content Include="Views\TeamMembers\Index.cshtml" />
-    <Content Include="Views\Videos\Create.cshtml" />
-    <Content Include="Views\Videos\Delete.cshtml" />
-    <Content Include="Views\Videos\Details.cshtml" />
-    <Content Include="Views\Videos\Edit.cshtml" />
-    <Content Include="Views\Videos\Index.cshtml" />
+    <Content Include="Views\Styles\Create.cshtml" />
+    <Content Include="Views\Styles\Delete.cshtml" />
+    <Content Include="Views\Styles\Details.cshtml" />
+    <Content Include="Views\Styles\Edit.cshtml" />
+    <Content Include="Views\Styles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

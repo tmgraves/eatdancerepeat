@@ -21,7 +21,10 @@
             @Html.DisplayNameFor(model => model.JoinDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Teacher)
+            @Html.DisplayNameFor(model => model.Dancer.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Teacher.Resume)
         </th>
         <th></th>
     </tr>
@@ -38,7 +41,10 @@
             @Html.DisplayFor(modelItem => item.JoinDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Teacher)
+            @Html.DisplayFor(modelItem => item.Dancer.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher.Resume)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |

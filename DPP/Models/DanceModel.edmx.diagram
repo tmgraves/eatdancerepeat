@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5be3767ee2fa4b9bb6e5ba91cf6d50f6" Name="Diagram1">
+        <EntityTypeShape EntityType="DanceDBModel.Comment" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Dancer" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.EventMember" Width="1.5" PointX="6" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Event" Width="1.5" PointX="3.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.EventStyle" Width="1.5" PointX="9" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.GroupEvent" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.GroupMember" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Group" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.GroupStyle" Width="1.5" PointX="9" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Picture" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Place" Width="1.5" PointX="3.75" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Review" Width="1.5" PointX="6" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Style" Width="1.5" PointX="6.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Teacher" Width="1.5" PointX="3" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.User" Width="1.5" PointX="0.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Video" Width="1.5" PointX="9" PointY="15.25" IsExpanded="true" />
+        <AssociationConnector Association="DanceDBModel.FK_Comments_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Comments_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Comments_Pictures" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Comments_Places" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Comments_Styles" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Comments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Comments_Videos" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Dancers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_EventMembers_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_EventMembers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Events_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_EventStyles_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_GroupEvents_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Pictures_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Reviews_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Videos_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_EventStyles_Styles" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_GroupEvents_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_GroupMembers_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_GroupMembers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Groups_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_GroupStyles_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Pictures_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Reviews_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Videos_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_GroupStyles_Styles" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Pictures_Places" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Pictures_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Pictures_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Reviews_Places" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Videos_Places" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Reviews_Styles" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Reviews_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Reviews_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Videos_Styles" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Teachers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DanceDBModel.FK_Videos_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DanceDBModel.Concert" Width="1.5" PointX="1.125" PointY="4.375" />
+        <InheritanceConnector EntityType="DanceDBModel.Concert" />
+        <EntityTypeShape EntityType="DanceDBModel.Social" Width="1.5" PointX="1" PointY="5.875" />
+        <InheritanceConnector EntityType="DanceDBModel.Social" />
+        <EntityTypeShape EntityType="DanceDBModel.Class" Width="1.5" PointX="1" PointY="7.125" />
+        <InheritanceConnector EntityType="DanceDBModel.Class" />
+        <AssociationConnector Association="DanceDBModel.FK_Events_Groups" />
+        <EntityTypeShape EntityType="DanceDBModel.Party" Width="1.5" PointX="1" PointY="8.5" />
+        <InheritanceConnector EntityType="DanceDBModel.Party" />
+        <EntityTypeShape EntityType="DanceDBModel.OpenHouse" Width="1.5" PointX="1.125" PointY="3" />
+        <InheritanceConnector EntityType="DanceDBModel.OpenHouse" />
+        <EntityTypeShape EntityType="DanceDBModel.Workshop" Width="1.5" PointX="1.125" PointY="1.625" />
+        <InheritanceConnector EntityType="DanceDBModel.Workshop" />
+        <EntityTypeShape EntityType="DanceDBModel.Conference" Width="1.5" PointX="1.125" PointY="0.5" />
+        <InheritanceConnector EntityType="DanceDBModel.Conference" />
+        <EntityTypeShape EntityType="DanceDBModel.GroupRehearsal" Width="1.5" PointX="9" PointY="20.25" />
+        <AssociationConnector Association="DanceDBModel.FK_GroupRehearsals_Groups" />
+        <AssociationConnector Association="DanceDBModel.FK_GroupRehearsals_Places" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

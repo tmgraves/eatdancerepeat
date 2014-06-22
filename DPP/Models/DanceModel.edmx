@@ -1,0 +1,2057 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DanceDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PlaceID" Type="int" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="PictureID" Type="int" />
+          <Property Name="VideoID" Type="int" />
+          <Property Name="StyleID" Type="int" />
+          <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CommentDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dancers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventMembers">
+          <Key>
+            <PropertyRef Name="EventMemberID" />
+          </Key>
+          <Property Name="EventMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="AttendeeStatus" Type="int" Nullable="false" />
+          <Property Name="Organizer" Type="bit" Nullable="false" />
+          <Property Name="JoinDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="EndTime" Type="time" Precision="7" />
+          <Property Name="AllDay" Type="bit" Nullable="false" />
+          <Property Name="Link" Type="varchar" MaxLength="2000" />
+          <Property Name="Cost" Type="money" />
+          <Property Name="LocationType" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+          <Property Name="City" Type="nvarchar" MaxLength="200" />
+          <Property Name="State" Type="nvarchar" MaxLength="200" />
+          <Property Name="Zip" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="100" />
+          <Property Name="ParentEventID" Type="int" />
+          <Property Name="Frequency" Type="int" />
+          <Property Name="DaysOfWeek" Type="varchar" MaxLength="200" />
+          <Property Name="GroupID" Type="int" />
+        </EntityType>
+        <EntityType Name="EventStyles">
+          <Key>
+            <PropertyRef Name="EventStyleID" />
+          </Key>
+          <Property Name="EventStyleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="StyleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupEvents">
+          <Key>
+            <PropertyRef Name="GroupEventID" />
+          </Key>
+          <Property Name="GroupEventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupMembers">
+          <Key>
+            <PropertyRef Name="GroupMemberID" />
+          </Key>
+          <Property Name="GroupMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="JoinDate" Type="date" Nullable="false" />
+          <Property Name="Admin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupRehearsals">
+          <Key>
+            <PropertyRef Name="GroupRehearsalID" />
+          </Key>
+          <Property Name="GroupRehearsalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="PlaceID" Type="int" Nullable="false" />
+          <Property Name="Day" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="GroupDescription" Type="nvarchar(max)" />
+          <Property Name="SkillLevel" Type="int" Nullable="false" />
+          <Property Name="FacebookLink" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Public" Type="bit" Nullable="false" />
+          <Property Name="ParentGroupID" Type="int" />
+        </EntityType>
+        <EntityType Name="GroupStyles">
+          <Key>
+            <PropertyRef Name="GroupStyleID" />
+          </Key>
+          <Property Name="GroupStyleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="StyleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pictures">
+          <Key>
+            <PropertyRef Name="PictureID" />
+          </Key>
+          <Property Name="PictureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PictureName" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostUserID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PlaceID" Type="int" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="Link" Type="nvarchar" MaxLength="2000" />
+          <Property Name="PictureDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Places">
+          <Key>
+            <PropertyRef Name="PlaceID" />
+          </Key>
+          <Property Name="PlaceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlaceType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthorUserID" Type="int" Nullable="false" />
+          <Property Name="Review" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ReviewDate" Type="datetime" Nullable="false" />
+          <Property Name="Stars" Type="float" Nullable="false" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PlaceID" Type="int" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="StyleID" Type="int" />
+        </EntityType>
+        <EntityType Name="Styles">
+          <Key>
+            <PropertyRef Name="StyleID" />
+          </Key>
+          <Property Name="StyleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Style" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Experience" Type="int" Nullable="false" />
+          <Property Name="Resume" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="JoinDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Videos">
+          <Key>
+            <PropertyRef Name="VideoID" />
+          </Key>
+          <Property Name="VideoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VideoName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="PlaceID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="StyleID" Type="int" />
+          <Property Name="VideoDate" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Comments_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Pictures">
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pictures">
+              <PropertyRef Name="PictureID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Places">
+          <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Styles">
+          <End Role="Styles" Type="Self.Styles" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Styles">
+              <PropertyRef Name="StyleID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="StyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Videos">
+          <End Role="Videos" Type="Self.Videos" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Videos">
+              <PropertyRef Name="VideoID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="VideoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dancers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Dancers" Type="Self.Dancers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Dancers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventMembers_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="EventMembers" Type="Self.EventMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventMembers">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventMembers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="EventMembers" Type="Self.EventMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="EventMembers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Events1" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Events1">
+              <PropertyRef Name="ParentEventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventStyles_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="EventStyles" Type="Self.EventStyles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventStyles">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventStyles_Styles">
+          <End Role="Styles" Type="Self.Styles" Multiplicity="1" />
+          <End Role="EventStyles" Type="Self.EventStyles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Styles">
+              <PropertyRef Name="StyleID" />
+            </Principal>
+            <Dependent Role="EventStyles">
+              <PropertyRef Name="StyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupEvents_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="GroupEvents" Type="Self.GroupEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="GroupEvents">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupEvents_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="GroupEvents" Type="Self.GroupEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupEvents">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupMembers_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="GroupMembers" Type="Self.GroupMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupMembers">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupMembers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="GroupMembers" Type="Self.GroupMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="GroupMembers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupRehearsals_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="GroupRehearsals" Type="Self.GroupRehearsals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupRehearsals">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupRehearsals_Places">
+          <End Role="Places" Type="Self.Places" Multiplicity="1" />
+          <End Role="GroupRehearsals" Type="Self.GroupRehearsals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="GroupRehearsals">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Groups1" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Groups1">
+              <PropertyRef Name="ParentGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupStyles_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="GroupStyles" Type="Self.GroupStyles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupStyles">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupStyles_Styles">
+          <End Role="Styles" Type="Self.Styles" Multiplicity="1" />
+          <End Role="GroupStyles" Type="Self.GroupStyles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Styles">
+              <PropertyRef Name="StyleID" />
+            </Principal>
+            <Dependent Role="GroupStyles">
+              <PropertyRef Name="StyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Places">
+          <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="PostUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Places">
+          <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Styles">
+          <End Role="Styles" Type="Self.Styles" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Styles">
+              <PropertyRef Name="StyleID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="StyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="AuthorUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_Places">
+          <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_Styles">
+          <End Role="Styles" Type="Self.Styles" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Styles">
+              <PropertyRef Name="StyleID" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="StyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DanceDBModelStoreContainer">
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dancers" EntityType="Self.Dancers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventMembers" EntityType="Self.EventMembers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventStyles" EntityType="Self.EventStyles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupEvents" EntityType="Self.GroupEvents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupMembers" EntityType="Self.GroupMembers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupRehearsals" EntityType="Self.GroupRehearsals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupStyles" EntityType="Self.GroupStyles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Styles" EntityType="Self.Styles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Videos" EntityType="Self.Videos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Comments_Events" Association="Self.FK_Comments_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Groups" Association="Self.FK_Comments_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Pictures" Association="Self.FK_Comments_Pictures">
+            <End Role="Pictures" EntitySet="Pictures" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Places" Association="Self.FK_Comments_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Styles" Association="Self.FK_Comments_Styles">
+            <End Role="Styles" EntitySet="Styles" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Videos" Association="Self.FK_Comments_Videos">
+            <End Role="Videos" EntitySet="Videos" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dancers_Users" Association="Self.FK_Dancers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Dancers" EntitySet="Dancers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventMembers_Events" Association="Self.FK_EventMembers_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventMembers" EntitySet="EventMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventMembers_Users" Association="Self.FK_EventMembers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="EventMembers" EntitySet="EventMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Events" Association="Self.FK_Events_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Events1" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Groups" Association="Self.FK_Events_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventStyles_Events" Association="Self.FK_EventStyles_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventStyles" EntitySet="EventStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventStyles_Styles" Association="Self.FK_EventStyles_Styles">
+            <End Role="Styles" EntitySet="Styles" />
+            <End Role="EventStyles" EntitySet="EventStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupEvents_Events" Association="Self.FK_GroupEvents_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="GroupEvents" EntitySet="GroupEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupEvents_Groups" Association="Self.FK_GroupEvents_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="GroupEvents" EntitySet="GroupEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupMembers_Groups" Association="Self.FK_GroupMembers_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="GroupMembers" EntitySet="GroupMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupMembers_Users" Association="Self.FK_GroupMembers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GroupMembers" EntitySet="GroupMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupRehearsals_Groups" Association="Self.FK_GroupRehearsals_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="GroupRehearsals" EntitySet="GroupRehearsals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupRehearsals_Places" Association="Self.FK_GroupRehearsals_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="GroupRehearsals" EntitySet="GroupRehearsals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Groups" Association="Self.FK_Groups_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Groups1" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupStyles_Groups" Association="Self.FK_GroupStyles_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="GroupStyles" EntitySet="GroupStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupStyles_Styles" Association="Self.FK_GroupStyles_Styles">
+            <End Role="Styles" EntitySet="Styles" />
+            <End Role="GroupStyles" EntitySet="GroupStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Events" Association="Self.FK_Pictures_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Groups" Association="Self.FK_Pictures_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Places" Association="Self.FK_Pictures_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Users" Association="Self.FK_Pictures_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Users1" Association="Self.FK_Pictures_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Events" Association="Self.FK_Reviews_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Groups" Association="Self.FK_Reviews_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Places" Association="Self.FK_Reviews_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Styles" Association="Self.FK_Reviews_Styles">
+            <End Role="Styles" EntitySet="Styles" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Users" Association="Self.FK_Reviews_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Users1" Association="Self.FK_Reviews_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Users" Association="Self.FK_Teachers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Events" Association="Self.FK_Videos_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Groups" Association="Self.FK_Videos_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Places" Association="Self.FK_Videos_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Styles" Association="Self.FK_Videos_Styles">
+            <End Role="Styles" EntitySet="Styles" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Users" Association="Self.FK_Videos_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DanceDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PlaceID" Type="Int32" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="PictureID" Type="Int32" />
+          <Property Name="VideoID" Type="Int32" />
+          <Property Name="StyleID" Type="Int32" />
+          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommentDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Comments_Events" FromRole="Comments" ToRole="Events" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Comments_Groups" FromRole="Comments" ToRole="Groups" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK_Comments_Pictures" FromRole="Comments" ToRole="Pictures" />
+          <NavigationProperty Name="Place" Relationship="Self.FK_Comments_Places" FromRole="Comments" ToRole="Places" />
+          <NavigationProperty Name="Style" Relationship="Self.FK_Comments_Styles" FromRole="Comments" ToRole="Styles" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
+          <NavigationProperty Name="Video" Relationship="Self.FK_Comments_Videos" FromRole="Comments" ToRole="Videos" />
+        </EntityType>
+        <EntityType Name="Dancer">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Dancers_Users" FromRole="Dancers" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="EventMember">
+          <Key>
+            <PropertyRef Name="EventMemberID" />
+          </Key>
+          <Property Name="EventMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="AttendeeStatus" Type="Int32" Nullable="false" />
+          <Property Name="Organizer" Type="Boolean" Nullable="false" />
+          <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_EventMembers_Events" FromRole="EventMembers" ToRole="Events" />
+          <NavigationProperty Name="User" Relationship="Self.FK_EventMembers_Users" FromRole="EventMembers" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="EndTime" Type="Time" Precision="7" />
+          <Property Name="AllDay" Type="Boolean" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LocationType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ParentEventID" Type="Int32" />
+          <Property Name="Frequency" Type="Int32" />
+          <Property Name="DaysOfWeek" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Events" FromRole="Events" ToRole="Comments" />
+          <NavigationProperty Name="EventMembers" Relationship="Self.FK_EventMembers_Events" FromRole="Events" ToRole="EventMembers" />
+          <NavigationProperty Name="Events1" Relationship="Self.FK_Events_Events" FromRole="Events" ToRole="Events1" />
+          <NavigationProperty Name="Event1" Relationship="Self.FK_Events_Events" FromRole="Events1" ToRole="Events" />
+          <NavigationProperty Name="EventStyles" Relationship="Self.FK_EventStyles_Events" FromRole="Events" ToRole="EventStyles" />
+          <NavigationProperty Name="GroupEvents" Relationship="Self.FK_GroupEvents_Events" FromRole="Events" ToRole="GroupEvents" />
+          <NavigationProperty Name="Pictures" Relationship="Self.FK_Pictures_Events" FromRole="Events" ToRole="Pictures" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Events" FromRole="Events" ToRole="Reviews" />
+          <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_Events" FromRole="Events" ToRole="Videos" />
+          <Property Name="GroupID" Type="Int32" />
+          <NavigationProperty Name="Group" Relationship="DanceDBModel.FK_Events_Groups" FromRole="Event" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="EventStyle">
+          <Key>
+            <PropertyRef Name="EventStyleID" />
+          </Key>
+          <Property Name="EventStyleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="StyleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_EventStyles_Events" FromRole="EventStyles" ToRole="Events" />
+          <NavigationProperty Name="Style" Relationship="Self.FK_EventStyles_Styles" FromRole="EventStyles" ToRole="Styles" />
+        </EntityType>
+        <EntityType Name="GroupEvent">
+          <Key>
+            <PropertyRef Name="GroupEventID" />
+          </Key>
+          <Property Name="GroupEventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_GroupEvents_Events" FromRole="GroupEvents" ToRole="Events" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_GroupEvents_Groups" FromRole="GroupEvents" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="GroupMember">
+          <Key>
+            <PropertyRef Name="GroupMemberID" />
+          </Key>
+          <Property Name="GroupMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Admin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_GroupMembers_Groups" FromRole="GroupMembers" ToRole="Groups" />
+          <NavigationProperty Name="User" Relationship="Self.FK_GroupMembers_Users" FromRole="GroupMembers" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SkillLevel" Type="Int32" Nullable="false" />
+          <Property Name="FacebookLink" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Public" Type="Boolean" Nullable="false" />
+          <Property Name="ParentGroupID" Type="Int32" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Groups" FromRole="Groups" ToRole="Comments" />
+          <NavigationProperty Name="GroupEvents" Relationship="Self.FK_GroupEvents_Groups" FromRole="Groups" ToRole="GroupEvents" />
+          <NavigationProperty Name="GroupMembers" Relationship="Self.FK_GroupMembers_Groups" FromRole="Groups" ToRole="GroupMembers" />
+          <NavigationProperty Name="Groups1" Relationship="Self.FK_Groups_Groups" FromRole="Groups" ToRole="Groups1" />
+          <NavigationProperty Name="Group1" Relationship="Self.FK_Groups_Groups" FromRole="Groups1" ToRole="Groups" />
+          <NavigationProperty Name="GroupStyles" Relationship="Self.FK_GroupStyles_Groups" FromRole="Groups" ToRole="GroupStyles" />
+          <NavigationProperty Name="Pictures" Relationship="Self.FK_Pictures_Groups" FromRole="Groups" ToRole="Pictures" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Groups" FromRole="Groups" ToRole="Reviews" />
+          <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_Groups" FromRole="Groups" ToRole="Videos" />
+          <NavigationProperty Name="Events" Relationship="DanceDBModel.FK_Events_Groups" FromRole="Group" ToRole="Event" />
+          <NavigationProperty Name="GroupRehearsals" Relationship="DanceDBModel.FK_GroupRehearsals_Groups" FromRole="Group" ToRole="GroupRehearsal" />
+        </EntityType>
+        <EntityType Name="GroupStyle">
+          <Key>
+            <PropertyRef Name="GroupStyleID" />
+          </Key>
+          <Property Name="GroupStyleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="StyleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_GroupStyles_Groups" FromRole="GroupStyles" ToRole="Groups" />
+          <NavigationProperty Name="Style" Relationship="Self.FK_GroupStyles_Styles" FromRole="GroupStyles" ToRole="Styles" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="PictureID" />
+          </Key>
+          <Property Name="PictureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PictureName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PostUserID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PlaceID" Type="Int32" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="Link" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="PictureDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Pictures" FromRole="Pictures" ToRole="Comments" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Pictures_Events" FromRole="Pictures" ToRole="Events" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Pictures_Groups" FromRole="Pictures" ToRole="Groups" />
+          <NavigationProperty Name="Place" Relationship="Self.FK_Pictures_Places" FromRole="Pictures" ToRole="Places" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Pictures_Users" FromRole="Pictures" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Pictures_Users1" FromRole="Pictures" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="PlaceID" />
+          </Key>
+          <Property Name="PlaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Places" FromRole="Places" ToRole="Comments" />
+          <NavigationProperty Name="Pictures" Relationship="Self.FK_Pictures_Places" FromRole="Places" ToRole="Pictures" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Places" FromRole="Places" ToRole="Reviews" />
+          <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_Places" FromRole="Places" ToRole="Videos" />
+          <NavigationProperty Name="GroupRehearsals" Relationship="DanceDBModel.FK_GroupRehearsals_Places" FromRole="Place" ToRole="GroupRehearsal" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorUserID" Type="Int32" Nullable="false" />
+          <Property Name="Review1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReviewDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Stars" Type="Double" Nullable="false" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PlaceID" Type="Int32" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="StyleID" Type="Int32" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Reviews_Events" FromRole="Reviews" ToRole="Events" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Reviews_Groups" FromRole="Reviews" ToRole="Groups" />
+          <NavigationProperty Name="Place" Relationship="Self.FK_Reviews_Places" FromRole="Reviews" ToRole="Places" />
+          <NavigationProperty Name="Style" Relationship="Self.FK_Reviews_Styles" FromRole="Reviews" ToRole="Styles" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Reviews_Users" FromRole="Reviews" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Reviews_Users1" FromRole="Reviews" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Style">
+          <Key>
+            <PropertyRef Name="StyleID" />
+          </Key>
+          <Property Name="StyleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Style1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Styles" FromRole="Styles" ToRole="Comments" />
+          <NavigationProperty Name="EventStyles" Relationship="Self.FK_EventStyles_Styles" FromRole="Styles" ToRole="EventStyles" />
+          <NavigationProperty Name="GroupStyles" Relationship="Self.FK_GroupStyles_Styles" FromRole="Styles" ToRole="GroupStyles" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Styles" FromRole="Styles" ToRole="Reviews" />
+          <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_Styles" FromRole="Styles" ToRole="Videos" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Experience" Type="Int32" Nullable="false" />
+          <Property Name="Resume" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Teachers_Users" FromRole="Teachers" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
+          <NavigationProperty Name="Dancer" Relationship="Self.FK_Dancers_Users" FromRole="Users" ToRole="Dancers" />
+          <NavigationProperty Name="EventMembers" Relationship="Self.FK_EventMembers_Users" FromRole="Users" ToRole="EventMembers" />
+          <NavigationProperty Name="GroupMembers" Relationship="Self.FK_GroupMembers_Users" FromRole="Users" ToRole="GroupMembers" />
+          <NavigationProperty Name="Pictures" Relationship="Self.FK_Pictures_Users" FromRole="Users" ToRole="Pictures" />
+          <NavigationProperty Name="Pictures1" Relationship="Self.FK_Pictures_Users1" FromRole="Users" ToRole="Pictures" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Users" FromRole="Users" ToRole="Reviews" />
+          <NavigationProperty Name="Reviews1" Relationship="Self.FK_Reviews_Users1" FromRole="Users" ToRole="Reviews" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Teachers_Users" FromRole="Users" ToRole="Teachers" />
+          <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_Users" FromRole="Users" ToRole="Videos" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="VideoID" />
+          </Key>
+          <Property Name="VideoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VideoName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PlaceID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="StyleID" Type="Int32" />
+          <Property Name="VideoDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Videos" FromRole="Videos" ToRole="Comments" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Videos_Events" FromRole="Videos" ToRole="Events" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Videos_Groups" FromRole="Videos" ToRole="Groups" />
+          <NavigationProperty Name="Place" Relationship="Self.FK_Videos_Places" FromRole="Videos" ToRole="Places" />
+          <NavigationProperty Name="Style" Relationship="Self.FK_Videos_Styles" FromRole="Videos" ToRole="Styles" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Videos_Users" FromRole="Videos" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Comments_Events">
+          <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Groups">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Pictures">
+          <End Role="Pictures" Type="Self.Picture" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pictures">
+              <PropertyRef Name="PictureID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Places">
+          <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Styles">
+          <End Role="Styles" Type="Self.Style" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Styles">
+              <PropertyRef Name="StyleID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="StyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Videos">
+          <End Role="Videos" Type="Self.Video" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Videos">
+              <PropertyRef Name="VideoID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="VideoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dancers_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Dancers" Type="Self.Dancer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Dancers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventMembers_Events">
+          <End Role="Events" Type="Self.Event" Multiplicity="1" />
+          <End Role="EventMembers" Type="Self.EventMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventMembers">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventMembers_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="EventMembers" Type="Self.EventMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="EventMembers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Events">
+          <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="Events1" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Events1">
+              <PropertyRef Name="ParentEventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventStyles_Events">
+          <End Role="Events" Type="Self.Event" Multiplicity="1" />
+          <End Role="EventStyles" Type="Self.EventStyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventStyles">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupEvents_Events">
+          <End Role="Events" Type="Self.Event" Multiplicity="1" />
+          <End Role="GroupEvents" Type="Self.GroupEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="GroupEvents">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Events">
+          <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="Pictures" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Events">
+          <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_Events">
+          <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventStyles_Styles">
+          <End Role="Styles" Type="Self.Style" Multiplicity="1" />
+          <End Role="EventStyles" Type="Self.EventStyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Styles">
+              <PropertyRef Name="StyleID" />
+            </Principal>
+            <Dependent Role="EventStyles">
+              <PropertyRef Name="StyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupEvents_Groups">
+          <End Role="Groups" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupEvents" Type="Self.GroupEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupEvents">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupMembers_Groups">
+          <End Role="Groups" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupMembers" Type="Self.GroupMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupMembers">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupMembers_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="GroupMembers" Type="Self.GroupMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="GroupMembers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Groups">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Groups1" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Groups1">
+              <PropertyRef Name="ParentGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupStyles_Groups">
+          <End Role="Groups" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupStyles" Type="Self.GroupStyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupStyles">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Groups">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Pictures" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Groups">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_Groups">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupStyles_Styles">
+          <End Role="Styles" Type="Self.Style" Multiplicity="1" />
+          <End Role="GroupStyles" Type="Self.GroupStyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Styles">
+              <PropertyRef Name="StyleID" />
+            </Principal>
+            <Dependent Role="GroupStyles">
+              <PropertyRef Name="StyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Places">
+          <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="Pictures" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Pictures" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Users1">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Pictures" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="PostUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Places">
+          <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_Places">
+          <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Styles">
+          <End Role="Styles" Type="Self.Style" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Styles">
+              <PropertyRef Name="StyleID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="StyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="AuthorUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Users1">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_Styles">
+          <End Role="Styles" Type="Self.Style" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Styles">
+              <PropertyRef Name="StyleID" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="StyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DanceDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Dancers" EntityType="Self.Dancer" />
+          <EntitySet Name="EventMembers" EntityType="Self.EventMember" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="EventStyles" EntityType="Self.EventStyle" />
+          <EntitySet Name="GroupEvents" EntityType="Self.GroupEvent" />
+          <EntitySet Name="GroupMembers" EntityType="Self.GroupMember" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="GroupStyles" EntityType="Self.GroupStyle" />
+          <EntitySet Name="Pictures" EntityType="Self.Picture" />
+          <EntitySet Name="Places" EntityType="Self.Place" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
+          <EntitySet Name="Styles" EntityType="Self.Style" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Videos" EntityType="Self.Video" />
+          <AssociationSet Name="FK_Comments_Events" Association="Self.FK_Comments_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Groups" Association="Self.FK_Comments_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Pictures" Association="Self.FK_Comments_Pictures">
+            <End Role="Pictures" EntitySet="Pictures" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Places" Association="Self.FK_Comments_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Styles" Association="Self.FK_Comments_Styles">
+            <End Role="Styles" EntitySet="Styles" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Videos" Association="Self.FK_Comments_Videos">
+            <End Role="Videos" EntitySet="Videos" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dancers_Users" Association="Self.FK_Dancers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Dancers" EntitySet="Dancers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventMembers_Events" Association="Self.FK_EventMembers_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventMembers" EntitySet="EventMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventMembers_Users" Association="Self.FK_EventMembers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="EventMembers" EntitySet="EventMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Events" Association="Self.FK_Events_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Events1" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventStyles_Events" Association="Self.FK_EventStyles_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventStyles" EntitySet="EventStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupEvents_Events" Association="Self.FK_GroupEvents_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="GroupEvents" EntitySet="GroupEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Events" Association="Self.FK_Pictures_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Events" Association="Self.FK_Reviews_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Events" Association="Self.FK_Videos_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventStyles_Styles" Association="Self.FK_EventStyles_Styles">
+            <End Role="Styles" EntitySet="Styles" />
+            <End Role="EventStyles" EntitySet="EventStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupEvents_Groups" Association="Self.FK_GroupEvents_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="GroupEvents" EntitySet="GroupEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupMembers_Groups" Association="Self.FK_GroupMembers_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="GroupMembers" EntitySet="GroupMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupMembers_Users" Association="Self.FK_GroupMembers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GroupMembers" EntitySet="GroupMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Groups" Association="Self.FK_Groups_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Groups1" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupStyles_Groups" Association="Self.FK_GroupStyles_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="GroupStyles" EntitySet="GroupStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Groups" Association="Self.FK_Pictures_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Groups" Association="Self.FK_Reviews_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Groups" Association="Self.FK_Videos_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupStyles_Styles" Association="Self.FK_GroupStyles_Styles">
+            <End Role="Styles" EntitySet="Styles" />
+            <End Role="GroupStyles" EntitySet="GroupStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Places" Association="Self.FK_Pictures_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Users" Association="Self.FK_Pictures_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Users1" Association="Self.FK_Pictures_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Places" Association="Self.FK_Reviews_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Places" Association="Self.FK_Videos_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Styles" Association="Self.FK_Reviews_Styles">
+            <End Role="Styles" EntitySet="Styles" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Users" Association="Self.FK_Reviews_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Users1" Association="Self.FK_Reviews_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Styles" Association="Self.FK_Videos_Styles">
+            <End Role="Styles" EntitySet="Styles" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Users" Association="Self.FK_Teachers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Users" Association="Self.FK_Videos_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Groups" Association="DanceDBModel.FK_Events_Groups">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <EntitySet Name="GroupRehearsals" EntityType="DanceDBModel.GroupRehearsal" />
+          <AssociationSet Name="FK_GroupRehearsals_Groups" Association="DanceDBModel.FK_GroupRehearsals_Groups">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="GroupRehearsal" EntitySet="GroupRehearsals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupRehearsals_Places" Association="DanceDBModel.FK_GroupRehearsals_Places">
+            <End Role="Place" EntitySet="Places" />
+            <End Role="GroupRehearsal" EntitySet="GroupRehearsals" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Concert" BaseType="DanceDBModel.Event" />
+        <EntityType Name="Social" BaseType="DanceDBModel.Event" />
+        <EntityType Name="Class" BaseType="DanceDBModel.Event" />
+        <Association Name="FK_Events_Groups">
+          <End Type="DanceDBModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="DanceDBModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Party" BaseType="DanceDBModel.Event" />
+        <EntityType Name="OpenHouse" BaseType="DanceDBModel.Event" />
+        <EntityType Name="Workshop" BaseType="DanceDBModel.Event" />
+        <EntityType Name="Conference" BaseType="DanceDBModel.Event" />
+        <EntityType Name="GroupRehearsal">
+          <Key>
+            <PropertyRef Name="GroupRehearsalID" />
+          </Key>
+          <Property Name="GroupRehearsalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="PlaceID" Type="Int32" Nullable="false" />
+          <Property Name="Day" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Group" Relationship="DanceDBModel.FK_GroupRehearsals_Groups" FromRole="GroupRehearsal" ToRole="Group" />
+          <NavigationProperty Name="Place" Relationship="DanceDBModel.FK_GroupRehearsals_Places" FromRole="GroupRehearsal" ToRole="Place" />
+        </EntityType>
+        <Association Name="FK_GroupRehearsals_Groups">
+          <End Type="DanceDBModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="DanceDBModel.GroupRehearsal" Role="GroupRehearsal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupRehearsal">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupRehearsals_Places">
+          <End Type="DanceDBModel.Place" Role="Place" Multiplicity="1" />
+          <End Type="DanceDBModel.GroupRehearsal" Role="GroupRehearsal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="GroupRehearsal">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DanceDBModelStoreContainer" CdmEntityContainer="DanceDBEntities">
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="DanceDBModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="VideoID" ColumnName="VideoID" />
+                <ScalarProperty Name="StyleID" ColumnName="StyleID" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+                <ScalarProperty Name="CommentDateTime" ColumnName="CommentDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dancers">
+            <EntityTypeMapping TypeName="DanceDBModel.Dancer">
+              <MappingFragment StoreEntitySet="Dancers">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventMembers">
+            <EntityTypeMapping TypeName="DanceDBModel.EventMember">
+              <MappingFragment StoreEntitySet="EventMembers">
+                <ScalarProperty Name="EventMemberID" ColumnName="EventMemberID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AttendeeStatus" ColumnName="AttendeeStatus" />
+                <ScalarProperty Name="Organizer" ColumnName="Organizer" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Event)">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="DaysOfWeek" ColumnName="DaysOfWeek" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+                <ScalarProperty Name="ParentEventID" ColumnName="ParentEventID" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LocationType" ColumnName="LocationType" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="AllDay" ColumnName="AllDay" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventStyles">
+            <EntityTypeMapping TypeName="DanceDBModel.EventStyle">
+              <MappingFragment StoreEntitySet="EventStyles">
+                <ScalarProperty Name="EventStyleID" ColumnName="EventStyleID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="StyleID" ColumnName="StyleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupEvents">
+            <EntityTypeMapping TypeName="DanceDBModel.GroupEvent">
+              <MappingFragment StoreEntitySet="GroupEvents">
+                <ScalarProperty Name="GroupEventID" ColumnName="GroupEventID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupMembers">
+            <EntityTypeMapping TypeName="DanceDBModel.GroupMember">
+              <MappingFragment StoreEntitySet="GroupMembers">
+                <ScalarProperty Name="GroupMemberID" ColumnName="GroupMemberID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="DanceDBModel.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupDescription" ColumnName="GroupDescription" />
+                <ScalarProperty Name="SkillLevel" ColumnName="SkillLevel" />
+                <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
+                <ScalarProperty Name="Public" ColumnName="Public" />
+                <ScalarProperty Name="ParentGroupID" ColumnName="ParentGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupStyles">
+            <EntityTypeMapping TypeName="DanceDBModel.GroupStyle">
+              <MappingFragment StoreEntitySet="GroupStyles">
+                <ScalarProperty Name="GroupStyleID" ColumnName="GroupStyleID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="StyleID" ColumnName="StyleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="DanceDBModel.Picture">
+              <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+                <ScalarProperty Name="PostUserID" ColumnName="PostUserID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="PictureDate" ColumnName="PictureDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places">
+            <EntityTypeMapping TypeName="DanceDBModel.Place">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="PlaceType" ColumnName="PlaceType" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="DanceDBModel.Review">
+              <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+                <ScalarProperty Name="AuthorUserID" ColumnName="AuthorUserID" />
+                <ScalarProperty Name="Review1" ColumnName="Review" />
+                <ScalarProperty Name="ReviewDate" ColumnName="ReviewDate" />
+                <ScalarProperty Name="Stars" ColumnName="Stars" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="StyleID" ColumnName="StyleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Styles">
+            <EntityTypeMapping TypeName="DanceDBModel.Style">
+              <MappingFragment StoreEntitySet="Styles">
+                <ScalarProperty Name="StyleID" ColumnName="StyleID" />
+                <ScalarProperty Name="Style1" ColumnName="Style" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="DanceDBModel.Teacher">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DanceDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Videos">
+            <EntityTypeMapping TypeName="DanceDBModel.Video">
+              <MappingFragment StoreEntitySet="Videos">
+                <ScalarProperty Name="VideoID" ColumnName="VideoID" />
+                <ScalarProperty Name="VideoName" ColumnName="VideoName" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="StyleID" ColumnName="StyleID" />
+                <ScalarProperty Name="VideoDate" ColumnName="VideoDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupRehearsals">
+            <EntityTypeMapping TypeName="DanceDBModel.GroupRehearsal">
+              <MappingFragment StoreEntitySet="GroupRehearsals">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupRehearsalID" ColumnName="GroupRehearsalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

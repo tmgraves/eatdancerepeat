@@ -12,30 +12,25 @@ namespace DPP.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Place
+    public partial class Style
     {
-        public Place()
+        public Style()
         {
             this.Comments = new HashSet<Comment>();
-            this.Pictures = new HashSet<Picture>();
+            this.EventStyles = new HashSet<EventStyle>();
+            this.GroupStyles = new HashSet<GroupStyle>();
             this.Reviews = new HashSet<Review>();
             this.Videos = new HashSet<Video>();
-            this.GroupRehearsals = new HashSet<GroupRehearsal>();
         }
     
-        public int PlaceID { get; set; }
-        public string PlaceType { get; set; }
-        public string Address { get; set; }
-        public string Address2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
-        public string Country { get; set; }
+        public int StyleID { get; set; }
+        public string Style1 { get; set; }
+        public string Description { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Picture> Pictures { get; set; }
+        public virtual ICollection<EventStyle> EventStyles { get; set; }
+        public virtual ICollection<GroupStyle> GroupStyles { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Video> Videos { get; set; }
-        public virtual ICollection<GroupRehearsal> GroupRehearsals { get; set; }
     }
 }
