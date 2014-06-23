@@ -17,7 +17,7 @@ namespace DPP.Controllers
         // GET: Schools
         public ActionResult Index()
         {
-            return View(db.Groups.ToList());
+            return View(db.Groups.OfType<School>());
         }
 
         // GET: Schools/Details/5
@@ -27,7 +27,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            School school = db.Groups.Find(id);
+            School school = db.Groups.OfType<School>().Single(s => s.GroupID == id);
             if (school == null)
             {
                 return HttpNotFound();
@@ -65,7 +65,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            School school = db.Groups.Find(id);
+            School school = db.Groups.OfType<School>().Single(s => s.GroupID == id);
             if (school == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            School school = db.Groups.Find(id);
+            School school = db.Groups.OfType<School>().Single(s => s.GroupID == id);
             if (school == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace DPP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            School school = db.Groups.Find(id);
+            School school = db.Groups.OfType<School>().Single(s => s.GroupID == id);
             db.Groups.Remove(school);
             db.SaveChanges();
             return RedirectToAction("Index");

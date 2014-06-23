@@ -18,7 +18,7 @@ namespace DPP.Controllers
         public ActionResult Index()
         {
             var events = db.Events.Include(p => p.Group);
-            return View(events.ToList());
+            return View(events.OfType<Party>());
         }
 
         // GET: Parties/Details/5
@@ -28,7 +28,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Party party = db.Events.Find(id);
+            Party party = db.Events.OfType<Party>().Single(p => p.EventID == id);
             if (party == null)
             {
                 return HttpNotFound();
@@ -68,7 +68,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Party party = db.Events.Find(id);
+            Party party = db.Events.OfType<Party>().Single(p => p.EventID == id);
             if (party == null)
             {
                 return HttpNotFound();
@@ -101,7 +101,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Party party = db.Events.Find(id);
+            Party party = db.Events.OfType<Party>().Single(p => p.EventID == id);
             if (party == null)
             {
                 return HttpNotFound();
@@ -114,7 +114,7 @@ namespace DPP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Party party = db.Events.Find(id);
+            Party party = db.Events.OfType<Party>().Single(p => p.EventID == id);
             db.Events.Remove(party);
             db.SaveChanges();
             return RedirectToAction("Index");

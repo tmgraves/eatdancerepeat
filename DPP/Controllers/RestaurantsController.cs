@@ -17,7 +17,7 @@ namespace DPP.Controllers
         // GET: Restaurants
         public ActionResult Index()
         {
-            return View(db.Places.ToList());
+            return View(db.Places.OfType<Restaurant>());
         }
 
         // GET: Restaurants/Details/5
@@ -27,7 +27,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurant restaurant = db.Places.Find(id);
+            Restaurant restaurant = db.Places.OfType<Restaurant>().Single(r => r.PlaceID == id);
             if (restaurant == null)
             {
                 return HttpNotFound();
@@ -65,7 +65,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurant restaurant = db.Places.Find(id);
+            Restaurant restaurant = db.Places.OfType<Restaurant>().Single(r => r.PlaceID == id);
             if (restaurant == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurant restaurant = db.Places.Find(id);
+            Restaurant restaurant = db.Places.OfType<Restaurant>().Single(r => r.PlaceID == id);
             if (restaurant == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace DPP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Restaurant restaurant = db.Places.Find(id);
+            Restaurant restaurant = db.Places.OfType<Restaurant>().Single(r => r.PlaceID == id);
             db.Places.Remove(restaurant);
             db.SaveChanges();
             return RedirectToAction("Index");

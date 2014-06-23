@@ -18,7 +18,7 @@ namespace DPP.Controllers
         public ActionResult Index()
         {
             var events = db.Events.Include(o => o.Group);
-            return View(events.ToList());
+            return View(events.OfType<OpenHouse>());
         }
 
         // GET: OpenHouses/Details/5
@@ -28,7 +28,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpenHouse openHouse = db.Events.Find(id);
+            OpenHouse openHouse = db.Events.OfType<OpenHouse>().Single(o => o.EventID == id);
             if (openHouse == null)
             {
                 return HttpNotFound();
@@ -68,7 +68,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpenHouse openHouse = db.Events.Find(id);
+            OpenHouse openHouse = db.Events.OfType<OpenHouse>().Single(o => o.EventID == id);
             if (openHouse == null)
             {
                 return HttpNotFound();
@@ -101,7 +101,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpenHouse openHouse = db.Events.Find(id);
+            OpenHouse openHouse = db.Events.OfType<OpenHouse>().Single(o => o.EventID == id);
             if (openHouse == null)
             {
                 return HttpNotFound();
@@ -114,7 +114,7 @@ namespace DPP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            OpenHouse openHouse = db.Events.Find(id);
+            OpenHouse openHouse = db.Events.OfType<OpenHouse>().Single(o => o.EventID == id);
             db.Events.Remove(openHouse);
             db.SaveChanges();
             return RedirectToAction("Index");

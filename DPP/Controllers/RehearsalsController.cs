@@ -18,7 +18,7 @@ namespace DPP.Controllers
         public ActionResult Index()
         {
             var events = db.Events.Include(r => r.Group);
-            return View(events.ToList());
+            return View(events.OfType<Rehearsal>());
         }
 
         // GET: Rehearsals/Details/5
@@ -28,7 +28,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rehearsal rehearsal = db.Events.Find(id);
+            Rehearsal rehearsal = db.Events.OfType<Rehearsal>().Single(r => r.EventID == id);
             if (rehearsal == null)
             {
                 return HttpNotFound();
@@ -68,7 +68,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rehearsal rehearsal = db.Events.Find(id);
+            Rehearsal rehearsal = db.Events.OfType<Rehearsal>().Single(r => r.EventID == id);
             if (rehearsal == null)
             {
                 return HttpNotFound();
@@ -101,7 +101,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rehearsal rehearsal = db.Events.Find(id);
+            Rehearsal rehearsal = db.Events.OfType<Rehearsal>().Single(r => r.EventID == id);
             if (rehearsal == null)
             {
                 return HttpNotFound();
@@ -114,7 +114,7 @@ namespace DPP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Rehearsal rehearsal = db.Events.Find(id);
+            Rehearsal rehearsal = db.Events.OfType<Rehearsal>().Single(r => r.EventID == id);
             db.Events.Remove(rehearsal);
             db.SaveChanges();
             return RedirectToAction("Index");

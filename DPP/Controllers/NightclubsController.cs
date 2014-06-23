@@ -17,7 +17,7 @@ namespace DPP.Controllers
         // GET: Nightclubs
         public ActionResult Index()
         {
-            return View(db.Places.ToList());
+            return View(db.Places.OfType<Nightclub>());
         }
 
         // GET: Nightclubs/Details/5
@@ -27,7 +27,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nightclub nightclub = db.Places.Find(id);
+            Nightclub nightclub = db.Places.OfType<Nightclub>().Single(n => n.PlaceID == id);
             if (nightclub == null)
             {
                 return HttpNotFound();
@@ -65,7 +65,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nightclub nightclub = db.Places.Find(id);
+            Nightclub nightclub = db.Places.OfType<Nightclub>().Single(n => n.PlaceID == id);
             if (nightclub == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nightclub nightclub = db.Places.Find(id);
+            Nightclub nightclub = db.Places.OfType<Nightclub>().Single(n => n.PlaceID == id);
             if (nightclub == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace DPP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Nightclub nightclub = db.Places.Find(id);
+            Nightclub nightclub = db.Places.OfType<Nightclub>().Single(n => n.PlaceID == id);
             db.Places.Remove(nightclub);
             db.SaveChanges();
             return RedirectToAction("Index");

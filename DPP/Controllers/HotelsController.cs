@@ -17,7 +17,7 @@ namespace DPP.Controllers
         // GET: Hotels
         public ActionResult Index()
         {
-            return View(db.Places.ToList());
+            return View(db.Places.OfType<Hotel>());
         }
 
         // GET: Hotels/Details/5
@@ -27,7 +27,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hotel hotel = db.Places.Find(id);
+            Hotel hotel = db.Places.OfType<Hotel>().Single(h => h.PlaceID == id);
             if (hotel == null)
             {
                 return HttpNotFound();
@@ -65,7 +65,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hotel hotel = db.Places.Find(id);
+            Hotel hotel = db.Places.OfType<Hotel>().Single(h => h.PlaceID == id);
             if (hotel == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hotel hotel = db.Places.Find(id);
+            Hotel hotel = db.Places.OfType<Hotel>().Single(h => h.PlaceID == id);
             if (hotel == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace DPP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Hotel hotel = db.Places.Find(id);
+            Hotel hotel = db.Places.OfType<Hotel>().Single(h => h.PlaceID == id);
             db.Places.Remove(hotel);
             db.SaveChanges();
             return RedirectToAction("Index");

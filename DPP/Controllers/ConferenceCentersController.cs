@@ -17,7 +17,7 @@ namespace DPP.Controllers
         // GET: ConferenceCenters
         public ActionResult Index()
         {
-            return View(db.Places.ToList());
+            return View(db.Places.OfType<ConferenceCenter>());
         }
 
         // GET: ConferenceCenters/Details/5
@@ -27,7 +27,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ConferenceCenter conferenceCenter = db.Places.Find(id);
+            ConferenceCenter conferenceCenter = db.Places.OfType<ConferenceCenter>().Single(c => c.PlaceID == id);
             if (conferenceCenter == null)
             {
                 return HttpNotFound();
@@ -65,7 +65,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ConferenceCenter conferenceCenter = db.Places.Find(id);
+            ConferenceCenter conferenceCenter = db.Places.OfType<ConferenceCenter>().Single(c => c.PlaceID == id);
             if (conferenceCenter == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace DPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ConferenceCenter conferenceCenter = db.Places.Find(id);
+            ConferenceCenter conferenceCenter = db.Places.OfType<ConferenceCenter>().Single(c => c.PlaceID == id);
             if (conferenceCenter == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace DPP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ConferenceCenter conferenceCenter = db.Places.Find(id);
+            ConferenceCenter conferenceCenter = db.Places.OfType<ConferenceCenter>().Single(c => c.PlaceID == id);
             db.Places.Remove(conferenceCenter);
             db.SaveChanges();
             return RedirectToAction("Index");
