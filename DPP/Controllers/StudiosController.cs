@@ -17,6 +17,7 @@ namespace DPP.Controllers
         // GET: Studios
         public ActionResult Index()
         {
+            var studios = db.Places.Include(s => s.Reviews);
             return View(db.Places.OfType<Studio>());
         }
 
