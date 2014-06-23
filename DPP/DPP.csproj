@@ -377,11 +377,6 @@
     <Content Include="Views\Styles\Details.cshtml" />
     <Content Include="Views\Styles\Edit.cshtml" />
     <Content Include="Views\Styles\Index.cshtml" />
-    <Content Include="Views\Classes\Create.cshtml" />
-    <Content Include="Views\Classes\Delete.cshtml" />
-    <Content Include="Views\Classes\Details.cshtml" />
-    <Content Include="Views\Classes\Edit.cshtml" />
-    <Content Include="Views\Classes\Index.cshtml" />
     <Content Include="Views\Comments\Create.cshtml" />
     <Content Include="Views\Comments\Delete.cshtml" />
     <Content Include="Views\Comments\Details.cshtml" />
@@ -507,6 +502,11 @@
     <Content Include="Views\Workshops\Details.cshtml" />
     <Content Include="Views\Workshops\Edit.cshtml" />
     <Content Include="Views\Workshops\Index.cshtml" />
+    <Content Include="Views\Classes\Create.cshtml" />
+    <Content Include="Views\Classes\Delete.cshtml" />
+    <Content Include="Views\Classes\Details.cshtml" />
+    <Content Include="Views\Classes\Edit.cshtml" />
+    <Content Include="Views\Classes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
