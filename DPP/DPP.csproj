@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -108,12 +114,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -160,8 +160,33 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\ClassesController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\ConcertsController.cs" />
+    <Compile Include="Controllers\ConferenceCentersController.cs" />
+    <Compile Include="Controllers\ConferencesController.cs" />
+    <Compile Include="Controllers\EventMembersController.cs" />
+    <Compile Include="Controllers\EventStylesController.cs" />
+    <Compile Include="Controllers\GroupEventsController.cs" />
+    <Compile Include="Controllers\GroupMembersController.cs" />
+    <Compile Include="Controllers\GroupRehearsalsController.cs" />
+    <Compile Include="Controllers\GroupStylesController.cs" />
+    <Compile Include="Controllers\HotelsController.cs" />
+    <Compile Include="Controllers\NightclubsController.cs" />
+    <Compile Include="Controllers\OpenHousesController.cs" />
+    <Compile Include="Controllers\PartiesController.cs" />
+    <Compile Include="Controllers\PicturesController.cs" />
+    <Compile Include="Controllers\RehearsalsController.cs" />
+    <Compile Include="Controllers\RestaurantsController.cs" />
+    <Compile Include="Controllers\ReviewsController.cs" />
+    <Compile Include="Controllers\SchoolsController.cs" />
+    <Compile Include="Controllers\SocialsController.cs" />
+    <Compile Include="Controllers\StudiosController.cs" />
     <Compile Include="Controllers\StylesController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\TheatersController.cs" />
+    <Compile Include="Controllers\VideosController.cs" />
+    <Compile Include="Controllers\WorkshopsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +203,9 @@
     <Compile Include="Models\Conference.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConferenceCenter.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DanceModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -192,9 +220,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DanceModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Dancer.cs">
-      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Event.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
@@ -220,7 +245,13 @@
     <Compile Include="Models\GroupStyle.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Hotel.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Nightclub.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\OpenHouse.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
@@ -233,16 +264,31 @@
     <Compile Include="Models\Place.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Rehearsal.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Restaurant.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Review.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\School.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Social.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Studio.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Style.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Teacher.cs">
+    <Compile Include="Models\Team.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Theater.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -326,16 +372,141 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Styles\Create.cshtml" />
     <Content Include="Views\Styles\Delete.cshtml" />
     <Content Include="Views\Styles\Details.cshtml" />
     <Content Include="Views\Styles\Edit.cshtml" />
     <Content Include="Views\Styles\Index.cshtml" />
+    <Content Include="Views\Classes\Create.cshtml" />
+    <Content Include="Views\Classes\Delete.cshtml" />
+    <Content Include="Views\Classes\Details.cshtml" />
+    <Content Include="Views\Classes\Edit.cshtml" />
+    <Content Include="Views\Classes\Index.cshtml" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Concerts\Create.cshtml" />
+    <Content Include="Views\Concerts\Delete.cshtml" />
+    <Content Include="Views\Concerts\Details.cshtml" />
+    <Content Include="Views\Concerts\Edit.cshtml" />
+    <Content Include="Views\Concerts\Index.cshtml" />
+    <Content Include="Views\Conferences\Create.cshtml" />
+    <Content Include="Views\Conferences\Delete.cshtml" />
+    <Content Include="Views\Conferences\Details.cshtml" />
+    <Content Include="Views\Conferences\Edit.cshtml" />
+    <Content Include="Views\Conferences\Index.cshtml" />
+    <Content Include="Views\ConferenceCenters\Create.cshtml" />
+    <Content Include="Views\ConferenceCenters\Delete.cshtml" />
+    <Content Include="Views\ConferenceCenters\Details.cshtml" />
+    <Content Include="Views\ConferenceCenters\Edit.cshtml" />
+    <Content Include="Views\ConferenceCenters\Index.cshtml" />
+    <Content Include="Views\EventMembers\Create.cshtml" />
+    <Content Include="Views\EventMembers\Delete.cshtml" />
+    <Content Include="Views\EventMembers\Details.cshtml" />
+    <Content Include="Views\EventMembers\Edit.cshtml" />
+    <Content Include="Views\EventMembers\Index.cshtml" />
+    <Content Include="Views\EventStyles\Create.cshtml" />
+    <Content Include="Views\EventStyles\Delete.cshtml" />
+    <Content Include="Views\EventStyles\Details.cshtml" />
+    <Content Include="Views\EventStyles\Edit.cshtml" />
+    <Content Include="Views\EventStyles\Index.cshtml" />
+    <Content Include="Views\GroupEvents\Create.cshtml" />
+    <Content Include="Views\GroupEvents\Delete.cshtml" />
+    <Content Include="Views\GroupEvents\Details.cshtml" />
+    <Content Include="Views\GroupEvents\Edit.cshtml" />
+    <Content Include="Views\GroupEvents\Index.cshtml" />
+    <Content Include="Views\GroupMembers\Create.cshtml" />
+    <Content Include="Views\GroupMembers\Delete.cshtml" />
+    <Content Include="Views\GroupMembers\Details.cshtml" />
+    <Content Include="Views\GroupMembers\Edit.cshtml" />
+    <Content Include="Views\GroupMembers\Index.cshtml" />
+    <Content Include="Views\GroupRehearsals\Create.cshtml" />
+    <Content Include="Views\GroupRehearsals\Delete.cshtml" />
+    <Content Include="Views\GroupRehearsals\Details.cshtml" />
+    <Content Include="Views\GroupRehearsals\Edit.cshtml" />
+    <Content Include="Views\GroupRehearsals\Index.cshtml" />
+    <Content Include="Views\GroupStyles\Create.cshtml" />
+    <Content Include="Views\GroupStyles\Delete.cshtml" />
+    <Content Include="Views\GroupStyles\Details.cshtml" />
+    <Content Include="Views\GroupStyles\Edit.cshtml" />
+    <Content Include="Views\GroupStyles\Index.cshtml" />
+    <Content Include="Views\Hotels\Create.cshtml" />
+    <Content Include="Views\Hotels\Delete.cshtml" />
+    <Content Include="Views\Hotels\Details.cshtml" />
+    <Content Include="Views\Hotels\Edit.cshtml" />
+    <Content Include="Views\Hotels\Index.cshtml" />
+    <Content Include="Views\Nightclubs\Create.cshtml" />
+    <Content Include="Views\Nightclubs\Delete.cshtml" />
+    <Content Include="Views\Nightclubs\Details.cshtml" />
+    <Content Include="Views\Nightclubs\Edit.cshtml" />
+    <Content Include="Views\Nightclubs\Index.cshtml" />
+    <Content Include="Views\OpenHouses\Create.cshtml" />
+    <Content Include="Views\OpenHouses\Delete.cshtml" />
+    <Content Include="Views\OpenHouses\Details.cshtml" />
+    <Content Include="Views\OpenHouses\Edit.cshtml" />
+    <Content Include="Views\OpenHouses\Index.cshtml" />
+    <Content Include="Views\Parties\Create.cshtml" />
+    <Content Include="Views\Parties\Delete.cshtml" />
+    <Content Include="Views\Parties\Details.cshtml" />
+    <Content Include="Views\Parties\Edit.cshtml" />
+    <Content Include="Views\Parties\Index.cshtml" />
+    <Content Include="Views\Pictures\Create.cshtml" />
+    <Content Include="Views\Pictures\Delete.cshtml" />
+    <Content Include="Views\Pictures\Details.cshtml" />
+    <Content Include="Views\Pictures\Edit.cshtml" />
+    <Content Include="Views\Pictures\Index.cshtml" />
+    <Content Include="Views\Rehearsals\Create.cshtml" />
+    <Content Include="Views\Rehearsals\Delete.cshtml" />
+    <Content Include="Views\Rehearsals\Details.cshtml" />
+    <Content Include="Views\Rehearsals\Edit.cshtml" />
+    <Content Include="Views\Rehearsals\Index.cshtml" />
+    <Content Include="Views\Restaurants\Create.cshtml" />
+    <Content Include="Views\Restaurants\Delete.cshtml" />
+    <Content Include="Views\Restaurants\Details.cshtml" />
+    <Content Include="Views\Restaurants\Edit.cshtml" />
+    <Content Include="Views\Restaurants\Index.cshtml" />
+    <Content Include="Views\Reviews\Create.cshtml" />
+    <Content Include="Views\Reviews\Delete.cshtml" />
+    <Content Include="Views\Reviews\Details.cshtml" />
+    <Content Include="Views\Reviews\Edit.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Schools\Create.cshtml" />
+    <Content Include="Views\Schools\Delete.cshtml" />
+    <Content Include="Views\Schools\Details.cshtml" />
+    <Content Include="Views\Schools\Edit.cshtml" />
+    <Content Include="Views\Schools\Index.cshtml" />
+    <Content Include="Views\Socials\Create.cshtml" />
+    <Content Include="Views\Socials\Delete.cshtml" />
+    <Content Include="Views\Socials\Details.cshtml" />
+    <Content Include="Views\Socials\Edit.cshtml" />
+    <Content Include="Views\Socials\Index.cshtml" />
+    <Content Include="Views\Studios\Create.cshtml" />
+    <Content Include="Views\Studios\Delete.cshtml" />
+    <Content Include="Views\Studios\Details.cshtml" />
+    <Content Include="Views\Studios\Edit.cshtml" />
+    <Content Include="Views\Studios\Index.cshtml" />
+    <Content Include="Views\Teams\Create.cshtml" />
+    <Content Include="Views\Teams\Delete.cshtml" />
+    <Content Include="Views\Teams\Details.cshtml" />
+    <Content Include="Views\Teams\Edit.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
+    <Content Include="Views\Theaters\Create.cshtml" />
+    <Content Include="Views\Theaters\Delete.cshtml" />
+    <Content Include="Views\Theaters\Details.cshtml" />
+    <Content Include="Views\Theaters\Edit.cshtml" />
+    <Content Include="Views\Theaters\Index.cshtml" />
+    <Content Include="Views\Videos\Create.cshtml" />
+    <Content Include="Views\Videos\Delete.cshtml" />
+    <Content Include="Views\Videos\Details.cshtml" />
+    <Content Include="Views\Videos\Edit.cshtml" />
+    <Content Include="Views\Videos\Index.cshtml" />
+    <Content Include="Views\Workshops\Create.cshtml" />
+    <Content Include="Views\Workshops\Delete.cshtml" />
+    <Content Include="Views\Workshops\Details.cshtml" />
+    <Content Include="Views\Workshops\Edit.cshtml" />
+    <Content Include="Views\Workshops\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

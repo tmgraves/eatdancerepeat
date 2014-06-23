@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DPP.Models.GroupEvent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Group.GroupName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.EventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Group.GroupName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GroupEventID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GroupEventID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GroupEventID })
+        </td>
+    </tr>
+}
+
+</table>

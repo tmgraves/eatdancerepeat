@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DPP.Models.EventMember>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendeeStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Organizer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JoinDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendeeStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Organizer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JoinDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.EventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EventMemberID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EventMemberID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventMemberID })
+        </td>
+    </tr>
+}
+
+</table>

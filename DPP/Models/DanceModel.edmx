@@ -20,13 +20,6 @@
           <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CommentDateTime" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="Dancers">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="StartDate" Type="date" Nullable="false" />
-        </EntityType>
         <EntityType Name="EventMembers">
           <Key>
             <PropertyRef Name="EventMemberID" />
@@ -172,14 +165,6 @@
           <Property Name="Style" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Teachers">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="Experience" Type="int" Nullable="false" />
-          <Property Name="Resume" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserID" />
@@ -284,18 +269,6 @@
             </Principal>
             <Dependent Role="Comments">
               <PropertyRef Name="VideoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Dancers_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Dancers" Type="Self.Dancers" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Dancers">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -611,18 +584,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Teachers_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Teachers">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Videos_Events">
           <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
           <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
@@ -685,7 +646,6 @@
         </Association>
         <EntityContainer Name="DanceDBModelStoreContainer">
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Dancers" EntityType="Self.Dancers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventMembers" EntityType="Self.EventMembers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventStyles" EntityType="Self.EventStyles" Schema="dbo" store:Type="Tables" />
@@ -698,7 +658,6 @@
           <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Styles" EntityType="Self.Styles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Videos" EntityType="Self.Videos" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Comments_Events" Association="Self.FK_Comments_Events">
@@ -728,10 +687,6 @@
           <AssociationSet Name="FK_Comments_Videos" Association="Self.FK_Comments_Videos">
             <End Role="Videos" EntitySet="Videos" />
             <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Dancers_Users" Association="Self.FK_Dancers_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Dancers" EntitySet="Dancers" />
           </AssociationSet>
           <AssociationSet Name="FK_EventMembers_Events" Association="Self.FK_EventMembers_Events">
             <End Role="Events" EntitySet="Events" />
@@ -837,10 +792,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK_Teachers_Users" Association="Self.FK_Teachers_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Teachers" EntitySet="Teachers" />
-          </AssociationSet>
           <AssociationSet Name="FK_Videos_Events" Association="Self.FK_Videos_Events">
             <End Role="Events" EntitySet="Events" />
             <End Role="Videos" EntitySet="Videos" />
@@ -888,14 +839,6 @@
           <NavigationProperty Name="User" Relationship="Self.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
           <NavigationProperty Name="Video" Relationship="Self.FK_Comments_Videos" FromRole="Comments" ToRole="Videos" />
         </EntityType>
-        <EntityType Name="Dancer">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Dancers_Users" FromRole="Dancers" ToRole="Users" />
-        </EntityType>
         <EntityType Name="EventMember">
           <Key>
             <PropertyRef Name="EventMemberID" />
@@ -909,12 +852,11 @@
           <NavigationProperty Name="Event" Relationship="Self.FK_EventMembers_Events" FromRole="EventMembers" ToRole="Events" />
           <NavigationProperty Name="User" Relationship="Self.FK_EventMembers_Users" FromRole="EventMembers" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Event">
+        <EntityType Name="Event" Abstract="true">
           <Key>
             <PropertyRef Name="EventID" />
           </Key>
           <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EventName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -978,12 +920,11 @@
           <NavigationProperty Name="Group" Relationship="Self.FK_GroupMembers_Groups" FromRole="GroupMembers" ToRole="Groups" />
           <NavigationProperty Name="User" Relationship="Self.FK_GroupMembers_Users" FromRole="GroupMembers" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Group">
+        <EntityType Name="Group" Abstract="true">
           <Key>
             <PropertyRef Name="GroupID" />
           </Key>
           <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GroupType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GroupName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GroupDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SkillLevel" Type="Int32" Nullable="false" />
@@ -1032,12 +973,11 @@
           <NavigationProperty Name="User" Relationship="Self.FK_Pictures_Users" FromRole="Pictures" ToRole="Users" />
           <NavigationProperty Name="User1" Relationship="Self.FK_Pictures_Users1" FromRole="Pictures" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Place">
+        <EntityType Name="Place" Abstract="true">
           <Key>
             <PropertyRef Name="PlaceID" />
           </Key>
           <Property Name="PlaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PlaceType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -1084,15 +1024,6 @@
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Styles" FromRole="Styles" ToRole="Reviews" />
           <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_Styles" FromRole="Styles" ToRole="Videos" />
         </EntityType>
-        <EntityType Name="Teacher">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="Experience" Type="Int32" Nullable="false" />
-          <Property Name="Resume" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Teachers_Users" FromRole="Teachers" ToRole="Users" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
@@ -1102,14 +1033,12 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
-          <NavigationProperty Name="Dancer" Relationship="Self.FK_Dancers_Users" FromRole="Users" ToRole="Dancers" />
           <NavigationProperty Name="EventMembers" Relationship="Self.FK_EventMembers_Users" FromRole="Users" ToRole="EventMembers" />
           <NavigationProperty Name="GroupMembers" Relationship="Self.FK_GroupMembers_Users" FromRole="Users" ToRole="GroupMembers" />
           <NavigationProperty Name="Pictures" Relationship="Self.FK_Pictures_Users" FromRole="Users" ToRole="Pictures" />
           <NavigationProperty Name="Pictures1" Relationship="Self.FK_Pictures_Users1" FromRole="Users" ToRole="Pictures" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Users" FromRole="Users" ToRole="Reviews" />
           <NavigationProperty Name="Reviews1" Relationship="Self.FK_Reviews_Users1" FromRole="Users" ToRole="Reviews" />
-          <NavigationProperty Name="Teacher" Relationship="Self.FK_Teachers_Users" FromRole="Users" ToRole="Teachers" />
           <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_Users" FromRole="Users" ToRole="Videos" />
         </EntityType>
         <EntityType Name="Video">
@@ -1213,18 +1142,6 @@
             </Principal>
             <Dependent Role="Comments">
               <PropertyRef Name="VideoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Dancers_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Dancers" Type="Self.Dancer" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Dancers">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1552,18 +1469,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Teachers_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Teachers" Type="Self.Teacher" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Teachers">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Videos_Users">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
           <End Role="Videos" Type="Self.Video" Multiplicity="*" />
@@ -1578,7 +1483,6 @@
         </Association>
         <EntityContainer Name="DanceDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <EntitySet Name="Dancers" EntityType="Self.Dancer" />
           <EntitySet Name="EventMembers" EntityType="Self.EventMember" />
           <EntitySet Name="Events" EntityType="Self.Event" />
           <EntitySet Name="EventStyles" EntityType="Self.EventStyle" />
@@ -1590,7 +1494,6 @@
           <EntitySet Name="Places" EntityType="Self.Place" />
           <EntitySet Name="Reviews" EntityType="Self.Review" />
           <EntitySet Name="Styles" EntityType="Self.Style" />
-          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Videos" EntityType="Self.Video" />
           <AssociationSet Name="FK_Comments_Events" Association="Self.FK_Comments_Events">
@@ -1620,10 +1523,6 @@
           <AssociationSet Name="FK_Comments_Videos" Association="Self.FK_Comments_Videos">
             <End Role="Videos" EntitySet="Videos" />
             <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Dancers_Users" Association="Self.FK_Dancers_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Dancers" EntitySet="Dancers" />
           </AssociationSet>
           <AssociationSet Name="FK_EventMembers_Events" Association="Self.FK_EventMembers_Events">
             <End Role="Events" EntitySet="Events" />
@@ -1733,10 +1632,6 @@
             <End Role="Styles" EntitySet="Styles" />
             <End Role="Videos" EntitySet="Videos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Teachers_Users" Association="Self.FK_Teachers_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Teachers" EntitySet="Teachers" />
-          </AssociationSet>
           <AssociationSet Name="FK_Videos_Users" Association="Self.FK_Videos_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Videos" EntitySet="Videos" />
@@ -1754,7 +1649,7 @@
             <End Role="Place" EntitySet="Places" />
             <End Role="GroupRehearsal" EntitySet="GroupRehearsals" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Concert" BaseType="DanceDBModel.Event" />
         <EntityType Name="Social" BaseType="DanceDBModel.Event" />
         <EntityType Name="Class" BaseType="DanceDBModel.Event" />
@@ -1810,6 +1705,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Rehearsal" BaseType="DanceDBModel.Event" />
+        <EntityType Name="Team" BaseType="DanceDBModel.Group" />
+        <EntityType Name="School" BaseType="DanceDBModel.Group" />
+        <EntityType Name="Studio" BaseType="DanceDBModel.Place" />
+        <EntityType Name="Nightclub" BaseType="DanceDBModel.Place" />
+        <EntityType Name="Theater" BaseType="DanceDBModel.Place" />
+        <EntityType Name="Hotel" BaseType="DanceDBModel.Place" />
+        <EntityType Name="ConferenceCenter" BaseType="DanceDBModel.Place" />
+        <EntityType Name="Restaurant" BaseType="DanceDBModel.Place" />
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1829,14 +1733,6 @@
                 <ScalarProperty Name="StyleID" ColumnName="StyleID" />
                 <ScalarProperty Name="Comment1" ColumnName="Comment" />
                 <ScalarProperty Name="CommentDateTime" ColumnName="CommentDateTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Dancers">
-            <EntityTypeMapping TypeName="DanceDBModel.Dancer">
-              <MappingFragment StoreEntitySet="Dancers">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1876,7 +1772,54 @@
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="EventName" ColumnName="EventName" />
-                <ScalarProperty Name="EventType" ColumnName="EventType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Conference)">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <Condition ColumnName="EventType" Value="Conference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Workshop)">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <Condition ColumnName="EventType" Value="Workshop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.OpenHouse)">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <Condition ColumnName="EventType" Value="OpenHouse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Concert)">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <Condition ColumnName="EventType" Value="Concert" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Social)">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <Condition ColumnName="EventType" Value="Social" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Class)">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <Condition ColumnName="EventType" Value="Class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Party)">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <Condition ColumnName="EventType" Value="Party" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Rehearsal)">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <Condition ColumnName="EventType" Value="Rehearsal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1910,16 +1853,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Groups">
-            <EntityTypeMapping TypeName="DanceDBModel.Group">
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Group)">
               <MappingFragment StoreEntitySet="Groups">
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="GroupDescription" ColumnName="GroupDescription" />
-                <ScalarProperty Name="SkillLevel" ColumnName="SkillLevel" />
-                <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
-                <ScalarProperty Name="Public" ColumnName="Public" />
                 <ScalarProperty Name="ParentGroupID" ColumnName="ParentGroupID" />
+                <ScalarProperty Name="Public" ColumnName="Public" />
+                <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
+                <ScalarProperty Name="SkillLevel" ColumnName="SkillLevel" />
+                <ScalarProperty Name="GroupDescription" ColumnName="GroupDescription" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.School)">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <Condition ColumnName="GroupType" Value="School" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Team)">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <Condition ColumnName="GroupType" Value="Team" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1948,16 +1902,51 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Places">
-            <EntityTypeMapping TypeName="DanceDBModel.Place">
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Place)">
               <MappingFragment StoreEntitySet="Places">
                 <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
-                <ScalarProperty Name="PlaceType" ColumnName="PlaceType" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.ConferenceCenter)">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <Condition ColumnName="PlaceType" Value="ConferenceCenter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Nightclub)">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <Condition ColumnName="PlaceType" Value="Nightclub" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Studio)">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <Condition ColumnName="PlaceType" Value="Studio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Hotel)">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <Condition ColumnName="PlaceType" Value="Hotel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Theater)">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <Condition ColumnName="PlaceType" Value="Theater" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DanceDBModel.Restaurant)">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <Condition ColumnName="PlaceType" Value="Restaurant" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1983,15 +1972,6 @@
                 <ScalarProperty Name="StyleID" ColumnName="StyleID" />
                 <ScalarProperty Name="Style1" ColumnName="Style" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Teachers">
-            <EntityTypeMapping TypeName="DanceDBModel.Teacher">
-              <MappingFragment StoreEntitySet="Teachers">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Experience" ColumnName="Experience" />
-                <ScalarProperty Name="Resume" ColumnName="Resume" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2031,7 +2011,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

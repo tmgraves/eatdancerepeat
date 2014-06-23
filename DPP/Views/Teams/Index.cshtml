@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DPP.Models.Team>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SkillLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FacebookLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Public)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParentGroupID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SkillLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FacebookLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Public)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParentGroupID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GroupID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GroupID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GroupID })
+        </td>
+    </tr>
+}
+
+</table>

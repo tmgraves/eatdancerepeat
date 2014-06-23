@@ -5,22 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5be3767ee2fa4b9bb6e5ba91cf6d50f6" Name="Diagram1">
-        <EntityTypeShape EntityType="DanceDBModel.Comment" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.Dancer" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.EventMember" Width="1.5" PointX="6" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.Event" Width="1.5" PointX="3.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.EventStyle" Width="1.5" PointX="9" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.GroupEvent" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.GroupMember" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.Group" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.GroupStyle" Width="1.5" PointX="9" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.Picture" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.Place" Width="1.5" PointX="3.75" PointY="23.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.Review" Width="1.5" PointX="6" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.Style" Width="1.5" PointX="6.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.Teacher" Width="1.5" PointX="3" PointY="38.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.User" Width="1.5" PointX="0.75" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DanceDBModel.Video" Width="1.5" PointX="9" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Comment" Width="1.5" PointX="16" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.EventMember" Width="1.5" PointX="6.375" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Event" Width="1.5" PointX="11.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.EventStyle" Width="1.5" PointX="13.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.GroupEvent" Width="1.5" PointX="10.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.GroupMember" Width="1.5" PointX="13.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Group" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.GroupStyle" Width="1.5" PointX="16.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Picture" Width="1.5" PointX="10.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Place" Width="1.5" PointX="16.375" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Review" Width="1.5" PointX="13.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Style" Width="1.5" PointX="11.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.User" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DanceDBModel.Video" Width="1.5" PointX="13.75" PointY="23.625" IsExpanded="true" />
         <AssociationConnector Association="DanceDBModel.FK_Comments_Events" ManuallyRouted="false" />
         <AssociationConnector Association="DanceDBModel.FK_Comments_Groups" ManuallyRouted="false" />
         <AssociationConnector Association="DanceDBModel.FK_Comments_Pictures" ManuallyRouted="false" />
@@ -28,7 +26,6 @@
         <AssociationConnector Association="DanceDBModel.FK_Comments_Styles" ManuallyRouted="false" />
         <AssociationConnector Association="DanceDBModel.FK_Comments_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DanceDBModel.FK_Comments_Videos" ManuallyRouted="false" />
-        <AssociationConnector Association="DanceDBModel.FK_Dancers_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DanceDBModel.FK_EventMembers_Events" ManuallyRouted="false" />
         <AssociationConnector Association="DanceDBModel.FK_EventMembers_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DanceDBModel.FK_Events_Events" ManuallyRouted="false" />
@@ -56,26 +53,44 @@
         <AssociationConnector Association="DanceDBModel.FK_Reviews_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DanceDBModel.FK_Reviews_Users1" ManuallyRouted="false" />
         <AssociationConnector Association="DanceDBModel.FK_Videos_Styles" ManuallyRouted="false" />
-        <AssociationConnector Association="DanceDBModel.FK_Teachers_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DanceDBModel.FK_Videos_Users" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DanceDBModel.Concert" Width="1.5" PointX="1.125" PointY="4.375" />
+        <EntityTypeShape EntityType="DanceDBModel.Concert" Width="1.5" PointX="1.125" PointY="12.375" />
         <InheritanceConnector EntityType="DanceDBModel.Concert" />
-        <EntityTypeShape EntityType="DanceDBModel.Social" Width="1.5" PointX="1" PointY="5.875" />
+        <EntityTypeShape EntityType="DanceDBModel.Social" Width="1.5" PointX="3.375" PointY="12.375" />
         <InheritanceConnector EntityType="DanceDBModel.Social" />
-        <EntityTypeShape EntityType="DanceDBModel.Class" Width="1.5" PointX="1" PointY="7.125" />
+        <EntityTypeShape EntityType="DanceDBModel.Class" Width="1.5" PointX="5.625" PointY="12.375" />
         <InheritanceConnector EntityType="DanceDBModel.Class" />
         <AssociationConnector Association="DanceDBModel.FK_Events_Groups" />
-        <EntityTypeShape EntityType="DanceDBModel.Party" Width="1.5" PointX="1" PointY="8.5" />
+        <EntityTypeShape EntityType="DanceDBModel.Party" Width="1.5" PointX="7.875" PointY="12.375" />
         <InheritanceConnector EntityType="DanceDBModel.Party" />
-        <EntityTypeShape EntityType="DanceDBModel.OpenHouse" Width="1.5" PointX="1.125" PointY="3" />
+        <EntityTypeShape EntityType="DanceDBModel.OpenHouse" Width="1.5" PointX="19.375" PointY="12.375" />
         <InheritanceConnector EntityType="DanceDBModel.OpenHouse" />
-        <EntityTypeShape EntityType="DanceDBModel.Workshop" Width="1.5" PointX="1.125" PointY="1.625" />
+        <EntityTypeShape EntityType="DanceDBModel.Workshop" Width="1.5" PointX="21.625" PointY="12.375" />
         <InheritanceConnector EntityType="DanceDBModel.Workshop" />
-        <EntityTypeShape EntityType="DanceDBModel.Conference" Width="1.5" PointX="1.125" PointY="0.5" />
+        <EntityTypeShape EntityType="DanceDBModel.Conference" Width="1.5" PointX="23.875" PointY="12.375" />
         <InheritanceConnector EntityType="DanceDBModel.Conference" />
-        <EntityTypeShape EntityType="DanceDBModel.GroupRehearsal" Width="1.5" PointX="9" PointY="20.25" />
+        <EntityTypeShape EntityType="DanceDBModel.GroupRehearsal" Width="1.5" PointX="10.75" PointY="24.5" />
         <AssociationConnector Association="DanceDBModel.FK_GroupRehearsals_Groups" />
         <AssociationConnector Association="DanceDBModel.FK_GroupRehearsals_Places" />
+        <EntityTypeShape EntityType="DanceDBModel.Rehearsal" Width="1.5" PointX="26.125" PointY="12.375" />
+        <InheritanceConnector EntityType="DanceDBModel.Rehearsal" />
+        <EntityTypeShape EntityType="DanceDBModel.Team" Width="1.5" PointX="28.625" PointY="11.125" />
+        <InheritanceConnector EntityType="DanceDBModel.Team" />
+        <EntityTypeShape EntityType="DanceDBModel.School" Width="1.5" PointX="30.875" PointY="11.125" />
+        <InheritanceConnector EntityType="DanceDBModel.School" />
+        <InheritanceConnector EntityType="DanceDBModel.School" />
+        <EntityTypeShape EntityType="DanceDBModel.Studio" Width="1.5" PointX="21.25" PointY="15.625" />
+        <InheritanceConnector EntityType="DanceDBModel.Studio" />
+        <EntityTypeShape EntityType="DanceDBModel.Nightclub" Width="1.5" PointX="3.75" PointY="15.625" />
+        <InheritanceConnector EntityType="DanceDBModel.Nightclub" />
+        <EntityTypeShape EntityType="DanceDBModel.Theater" Width="1.5" PointX="23.5" PointY="15.625" />
+        <InheritanceConnector EntityType="DanceDBModel.Theater" />
+        <EntityTypeShape EntityType="DanceDBModel.Hotel" Width="1.5" PointX="25.75" PointY="15.625" />
+        <InheritanceConnector EntityType="DanceDBModel.Hotel" />
+        <EntityTypeShape EntityType="DanceDBModel.ConferenceCenter" Width="1.5" PointX="19" PointY="15.625" />
+        <InheritanceConnector EntityType="DanceDBModel.ConferenceCenter" />
+        <EntityTypeShape EntityType="DanceDBModel.Restaurant" Width="1.5" PointX="28" PointY="15.625" />
+        <InheritanceConnector EntityType="DanceDBModel.Restaurant" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
