@@ -59,28 +59,10 @@
     <Folder Include="Properties" />
     <Folder Include="Security\" />
     <Folder Include="Scripts\" />
-    <Folder Include="dbo\" />
-    <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Security\dancedb.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
-    <Build Include="dbo\Tables\Places.sql" />
-    <Build Include="dbo\Tables\Users.sql" />
-    <Build Include="dbo\Tables\Groups.sql" />
-    <Build Include="dbo\Tables\Styles.sql" />
-    <Build Include="dbo\Tables\GroupStyles.sql" />
-    <Build Include="dbo\Tables\Dancers.sql" />
-    <Build Include="dbo\Tables\Events.sql" />
-    <Build Include="dbo\Tables\GroupRehearsals.sql" />
-    <Build Include="dbo\Tables\GroupMembers.sql" />
-    <Build Include="dbo\Tables\Teachers.sql" />
-    <Build Include="dbo\Tables\Pictures.sql" />
-    <Build Include="dbo\Tables\GroupEvents.sql" />
-    <Build Include="dbo\Tables\EventStyles.sql" />
-    <Build Include="dbo\Tables\EventMembers.sql" />
-    <Build Include="dbo\Tables\Reviews.sql" />
-    <Build Include="dbo\Tables\Videos.sql" />
-    <Build Include="dbo\Tables\Comments.sql" />
+    <Build Include="Scripts\DanceDB.sql" />
   </ItemGroup>
 </Project>
