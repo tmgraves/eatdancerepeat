@@ -17,7 +17,7 @@ namespace DPP.Controllers
         // GET: Classes
         public ActionResult Index()
         {
-            var events = db.Events.Include(c => c.Group);
+            var events = db.Events.Include(c => c.Group).Include(c => c.Reviews);
             return View(events.OfType<Class>());
         }
 
