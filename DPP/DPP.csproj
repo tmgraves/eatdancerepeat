@@ -160,6 +160,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClassesController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ConcertsController.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Controllers\GroupMembersController.cs" />
     <Compile Include="Controllers\GroupRehearsalsController.cs" />
     <Compile Include="Controllers\GroupStylesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="Controllers\NightclubsController.cs" />
     <Compile Include="Controllers\OpenHousesController.cs" />
