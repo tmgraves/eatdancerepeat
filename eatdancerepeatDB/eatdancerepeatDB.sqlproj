@@ -83,4 +83,7 @@
     <Build Include="dbo\Tables\Videos.sql" />
     <Build Include="dbo\Tables\Comments.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Change User - FacebookLink.sql" />
+  </ItemGroup>
 </Project>

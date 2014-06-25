@@ -20,6 +20,13 @@
           <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CommentDateTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Dancers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="EventMembers">
           <Key>
             <PropertyRef Name="EventMemberID" />
@@ -173,6 +180,7 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="JoinDate" Type="date" Nullable="false" />
+          <Property Name="FacebookLink" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Videos">
           <Key>
@@ -269,6 +277,18 @@
             </Principal>
             <Dependent Role="Comments">
               <PropertyRef Name="VideoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dancers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Dancers" Type="Self.Dancers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Dancers">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -646,6 +666,7 @@
         </Association>
         <EntityContainer Name="DanceDBModelStoreContainer">
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dancers" EntityType="Self.Dancers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventMembers" EntityType="Self.EventMembers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventStyles" EntityType="Self.EventStyles" Schema="dbo" store:Type="Tables" />
@@ -687,6 +708,10 @@
           <AssociationSet Name="FK_Comments_Videos" Association="Self.FK_Comments_Videos">
             <End Role="Videos" EntitySet="Videos" />
             <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dancers_Users" Association="Self.FK_Dancers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Dancers" EntitySet="Dancers" />
           </AssociationSet>
           <AssociationSet Name="FK_EventMembers_Events" Association="Self.FK_EventMembers_Events">
             <End Role="Events" EntitySet="Events" />
@@ -1040,6 +1065,8 @@
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Users" FromRole="Users" ToRole="Reviews" />
           <NavigationProperty Name="Reviews1" Relationship="Self.FK_Reviews_Users1" FromRole="Users" ToRole="Reviews" />
           <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_Users" FromRole="Users" ToRole="Videos" />
+          <Property Name="FacebookLink" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dancer" Relationship="DanceDBModel.FK_Dancers_Users" FromRole="User" ToRole="Dancer" />
         </EntityType>
         <EntityType Name="Video">
           <Key>
@@ -1649,6 +1676,11 @@
             <End Role="Place" EntitySet="Places" />
             <End Role="GroupRehearsal" EntitySet="GroupRehearsals" />
           </AssociationSet>
+          <EntitySet Name="Dancers" EntityType="DanceDBModel.Dancer" />
+          <AssociationSet Name="FK_Dancers_Users" Association="DanceDBModel.FK_Dancers_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Dancer" EntitySet="Dancers" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Concert" BaseType="DanceDBModel.Event" />
         <EntityType Name="Social" BaseType="DanceDBModel.Event" />
@@ -1714,6 +1746,26 @@
         <EntityType Name="Hotel" BaseType="DanceDBModel.Place" />
         <EntityType Name="ConferenceCenter" BaseType="DanceDBModel.Place" />
         <EntityType Name="Restaurant" BaseType="DanceDBModel.Place" />
+        <EntityType Name="Dancer">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="User" Relationship="DanceDBModel.FK_Dancers_Users" FromRole="Dancer" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Dancers_Users">
+          <End Type="DanceDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="DanceDBModel.Dancer" Role="Dancer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Dancer">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1978,6 +2030,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DanceDBModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -2008,6 +2061,14 @@
                 <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="GroupRehearsalID" ColumnName="GroupRehearsalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dancers">
+            <EntityTypeMapping TypeName="DanceDBModel.Dancer">
+              <MappingFragment StoreEntitySet="Dancers">
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

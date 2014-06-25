@@ -62,6 +62,8 @@ public partial class DanceDBEntities : DbContext
 
     public virtual DbSet<GroupRehearsal> GroupRehearsals { get; set; }
 
+    public virtual DbSet<Dancer> Dancers { get; set; }
+
 }
 
 }
