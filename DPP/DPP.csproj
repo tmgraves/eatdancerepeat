@@ -166,6 +166,7 @@
     <Compile Include="Controllers\ConcertsController.cs" />
     <Compile Include="Controllers\ConferenceCentersController.cs" />
     <Compile Include="Controllers\ConferencesController.cs" />
+    <Compile Include="Controllers\DancersController.cs" />
     <Compile Include="Controllers\EventMembersController.cs" />
     <Compile Include="Controllers\EventStylesController.cs" />
     <Compile Include="Controllers\GroupEventsController.cs" />
@@ -222,6 +223,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DanceModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dancer.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Event.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
@@ -509,6 +513,11 @@
     <Content Include="Views\Classes\Details.cshtml" />
     <Content Include="Views\Classes\Edit.cshtml" />
     <Content Include="Views\Classes\Index.cshtml" />
+    <Content Include="Views\Dancers\Create.cshtml" />
+    <Content Include="Views\Dancers\Delete.cshtml" />
+    <Content Include="Views\Dancers\Details.cshtml" />
+    <Content Include="Views\Dancers\Edit.cshtml" />
+    <Content Include="Views\Dancers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

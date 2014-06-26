@@ -91,6 +91,8 @@
         <InheritanceConnector EntityType="DanceDBModel.ConferenceCenter" />
         <EntityTypeShape EntityType="DanceDBModel.Restaurant" Width="1.5" PointX="28" PointY="15.625" />
         <InheritanceConnector EntityType="DanceDBModel.Restaurant" />
+        <EntityTypeShape EntityType="DanceDBModel.Dancer" Width="1.5" PointX="3" PointY="21.125" />
+        <AssociationConnector Association="DanceDBModel.FK_Dancers_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

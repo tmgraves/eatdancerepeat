@@ -48,6 +48,8 @@ public partial class User
 
     public System.DateTime JoinDate { get; set; }
 
+    public string FacebookLink { get; set; }
+
 
 
     public virtual ICollection<Comment> Comments { get; set; }
@@ -65,6 +67,8 @@ public partial class User
     public virtual ICollection<Review> Reviews1 { get; set; }
 
     public virtual ICollection<Video> Videos { get; set; }
+
+    public virtual Dancer Dancer { get; set; }
 
 }
 
