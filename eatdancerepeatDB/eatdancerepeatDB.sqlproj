@@ -64,5 +64,6 @@
     <Build Include="Security\dancedb.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
     <Build Include="Scripts\DanceDB.sql" />
+    <Build Include="Scripts\Add UsersUsers table.sql" />
   </ItemGroup>
 </Project>
