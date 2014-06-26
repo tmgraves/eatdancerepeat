@@ -64,6 +64,7 @@
     <Build Include="Security\dancedb.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
     <Build Include="Scripts\Add UsersUsers table.sql" />
+    <Build Include="Scripts\DanceDB.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Change User - FacebookLink.sql" />
