@@ -263,6 +263,9 @@
     <Compile Include="Models\OpenHouse.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Owner.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Party.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
@@ -270,6 +273,9 @@
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Place.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Promoter.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Rehearsal.cs">
@@ -291,6 +297,9 @@
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Style.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Teacher.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Team.cs">

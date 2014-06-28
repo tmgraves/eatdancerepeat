@@ -93,6 +93,12 @@
         <InheritanceConnector EntityType="DanceDBModel.Restaurant" />
         <EntityTypeShape EntityType="DanceDBModel.Dancer" Width="1.5" PointX="3" PointY="21.125" />
         <AssociationConnector Association="DanceDBModel.FK_Dancers_Users" />
+        <EntityTypeShape EntityType="DanceDBModel.Owner" Width="1.5" PointX="3" PointY="25.875" />
+        <EntityTypeShape EntityType="DanceDBModel.Promoter" Width="1.5" PointX="3" PointY="23.375" />
+        <EntityTypeShape EntityType="DanceDBModel.Teacher" Width="1.5" PointX="3" PointY="18" />
+        <AssociationConnector Association="DanceDBModel.FK_Owners_Users" />
+        <AssociationConnector Association="DanceDBModel.FK_Promoters_Users" />
+        <AssociationConnector Association="DanceDBModel.FK_Teachers_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -122,6 +122,13 @@
           <Property Name="GroupID" Type="int" Nullable="false" />
           <Property Name="StyleID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Owners">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ContactEmail" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="Pictures">
           <Key>
             <PropertyRef Name="PictureID" />
@@ -149,6 +156,15 @@
           <Property Name="Zip" Type="nvarchar" MaxLength="50" />
           <Property Name="Country" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Promoters">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ContactEmail" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Website" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="FacebookPage" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Reviews">
           <Key>
             <PropertyRef Name="ReviewID" />
@@ -171,6 +187,14 @@
           <Property Name="StyleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Style" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Experience" Type="int" Nullable="false" />
+          <Property Name="Resume" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -472,6 +496,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Owners_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Owners" Type="Self.Owners" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Owners">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pictures_Events">
           <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
           <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
@@ -529,6 +565,18 @@
             </Principal>
             <Dependent Role="Pictures">
               <PropertyRef Name="PostUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promoters_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Promoters" Type="Self.Promoters" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Promoters">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -604,6 +652,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Teachers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Videos_Events">
           <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
           <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
@@ -675,10 +735,13 @@
           <EntitySet Name="GroupRehearsals" EntityType="Self.GroupRehearsals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupStyles" EntityType="Self.GroupStyles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Owners" EntityType="Self.Owners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promoters" EntityType="Self.Promoters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Styles" EntityType="Self.Styles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Videos" EntityType="Self.Videos" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Comments_Events" Association="Self.FK_Comments_Events">
@@ -773,6 +836,10 @@
             <End Role="Styles" EntitySet="Styles" />
             <End Role="GroupStyles" EntitySet="GroupStyles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Owners_Users" Association="Self.FK_Owners_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Owners" EntitySet="Owners" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pictures_Events" Association="Self.FK_Pictures_Events">
             <End Role="Events" EntitySet="Events" />
             <End Role="Pictures" EntitySet="Pictures" />
@@ -792,6 +859,10 @@
           <AssociationSet Name="FK_Pictures_Users1" Association="Self.FK_Pictures_Users1">
             <End Role="Users" EntitySet="Users" />
             <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promoters_Users" Association="Self.FK_Promoters_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Promoters" EntitySet="Promoters" />
           </AssociationSet>
           <AssociationSet Name="FK_Reviews_Events" Association="Self.FK_Reviews_Events">
             <End Role="Events" EntitySet="Events" />
@@ -816,6 +887,10 @@
           <AssociationSet Name="FK_Reviews_Users1" Association="Self.FK_Reviews_Users1">
             <End Role="Users" EntitySet="Users" />
             <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Users" Association="Self.FK_Teachers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
           <AssociationSet Name="FK_Videos_Events" Association="Self.FK_Videos_Events">
             <End Role="Events" EntitySet="Events" />
@@ -1067,6 +1142,9 @@
           <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_Users" FromRole="Users" ToRole="Videos" />
           <Property Name="FacebookLink" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Dancer" Relationship="DanceDBModel.FK_Dancers_Users" FromRole="User" ToRole="Dancer" />
+          <NavigationProperty Name="Owner" Relationship="DanceDBModel.FK_Owners_Users" FromRole="User" ToRole="Owner" />
+          <NavigationProperty Name="Promoter" Relationship="DanceDBModel.FK_Promoters_Users" FromRole="User" ToRole="Promoter" />
+          <NavigationProperty Name="Teacher" Relationship="DanceDBModel.FK_Teachers_Users" FromRole="User" ToRole="Teacher" />
         </EntityType>
         <EntityType Name="Video">
           <Key>
@@ -1681,6 +1759,21 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Dancer" EntitySet="Dancers" />
           </AssociationSet>
+          <EntitySet Name="Owners" EntityType="DanceDBModel.Owner" />
+          <EntitySet Name="Promoters" EntityType="DanceDBModel.Promoter" />
+          <EntitySet Name="Teachers" EntityType="DanceDBModel.Teacher" />
+          <AssociationSet Name="FK_Owners_Users" Association="DanceDBModel.FK_Owners_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Owner" EntitySet="Owners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promoters_Users" Association="DanceDBModel.FK_Promoters_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Promoter" EntitySet="Promoters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Users" Association="DanceDBModel.FK_Teachers_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Teacher" EntitySet="Teachers" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Concert" BaseType="DanceDBModel.Event" />
         <EntityType Name="Social" BaseType="DanceDBModel.Event" />
@@ -1762,6 +1855,69 @@
               <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Dancer">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ContactEmail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="DanceDBModel.FK_Owners_Users" FromRole="Owner" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Promoter">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ContactEmail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FacebookPage" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="DanceDBModel.FK_Promoters_Users" FromRole="Promoter" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Experience" Type="Int32" Nullable="false" />
+          <Property Name="Resume" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="DanceDBModel.FK_Teachers_Users" FromRole="Teacher" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Owners_Users">
+          <End Type="DanceDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="DanceDBModel.Owner" Role="Owner" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Owner">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promoters_Users">
+          <End Type="DanceDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="DanceDBModel.Promoter" Role="Promoter" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Promoter">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_Users">
+          <End Type="DanceDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="DanceDBModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Teacher">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2068,6 +2224,33 @@
             <EntityTypeMapping TypeName="DanceDBModel.Dancer">
               <MappingFragment StoreEntitySet="Dancers">
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Owners">
+            <EntityTypeMapping TypeName="DanceDBModel.Owner">
+              <MappingFragment StoreEntitySet="Owners">
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promoters">
+            <EntityTypeMapping TypeName="DanceDBModel.Promoter">
+              <MappingFragment StoreEntitySet="Promoters">
+                <ScalarProperty Name="FacebookPage" ColumnName="FacebookPage" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="DanceDBModel.Teacher">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>

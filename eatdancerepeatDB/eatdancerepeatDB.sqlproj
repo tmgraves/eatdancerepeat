@@ -65,6 +65,8 @@
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
     <Build Include="Scripts\Add UsersUsers table.sql" />
     <Build Include="Scripts\DanceDB.sql" />
+    <Build Include="Scripts\add owners table.sql" />
+    <Build Include="Scripts\add promoters table.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Change User - FacebookLink.sql" />
