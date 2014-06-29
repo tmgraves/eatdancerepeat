@@ -63,11 +63,14 @@
   <ItemGroup>
     <Build Include="Security\dancedb.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
-    <Build Include="Scripts\Add UsersUsers table.sql" />
     <Build Include="Scripts\DanceDB.sql" />
     <Build Include="Scripts\add owners table.sql" />
     <Build Include="Scripts\add promoters table.sql" />
     <Build Include="Scripts\add friends table.sql" />
+    <Build Include="Scripts\add urlname to user table.sql" />
+    <Build Include="Scripts\add db_user role.sql" />
+    <Build Include="Scripts\add users addedit proc.sql" />
+    <Build Include="Scripts\add users seach proc.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Change User - FacebookLink.sql" />
