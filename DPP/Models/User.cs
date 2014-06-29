@@ -24,6 +24,8 @@ namespace DPP.Models
             this.Reviews = new HashSet<Review>();
             this.Reviews1 = new HashSet<Review>();
             this.Videos = new HashSet<Video>();
+            this.Friendships = new HashSet<Friendship>();
+            this.Friendships1 = new HashSet<Friendship>();
         }
     
         public int UserID { get; set; }
@@ -44,5 +46,7 @@ namespace DPP.Models
         public virtual Owner Owner { get; set; }
         public virtual Promoter Promoter { get; set; }
         public virtual Teacher Teacher { get; set; }
+        public virtual ICollection<Friendship> Friendships { get; set; }
+        public virtual ICollection<Friendship> Friendships1 { get; set; }
     }
 }

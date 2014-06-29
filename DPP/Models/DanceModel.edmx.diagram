@@ -99,6 +99,9 @@
         <AssociationConnector Association="DanceDBModel.FK_Owners_Users" />
         <AssociationConnector Association="DanceDBModel.FK_Promoters_Users" />
         <AssociationConnector Association="DanceDBModel.FK_Teachers_Users" />
+        <EntityTypeShape EntityType="DanceDBModel.Friendship" Width="1.5" PointX="3" PointY="28.375" />
+        <AssociationConnector Association="DanceDBModel.FK_Friendships_Users" />
+        <AssociationConnector Association="DanceDBModel.FK_Friendships_Users1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

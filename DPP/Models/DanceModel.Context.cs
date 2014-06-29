@@ -44,5 +44,6 @@ namespace DPP.Models
         public virtual DbSet<Owner> Owners { get; set; }
         public virtual DbSet<Promoter> Promoters { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
+        public virtual DbSet<Friendship> Friendships { get; set; }
     }
 }

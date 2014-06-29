@@ -12,11 +12,14 @@ namespace DPP.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Owner
+    public partial class Friendship
     {
+        public int FriendshipID { get; set; }
         public int UserID { get; set; }
-        public string ContactEmail { get; set; }
+        public int FriendUserID { get; set; }
+        public Nullable<int> FriendStatus { get; set; }
     
         public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

@@ -67,6 +67,7 @@
     <Build Include="Scripts\DanceDB.sql" />
     <Build Include="Scripts\add owners table.sql" />
     <Build Include="Scripts\add promoters table.sql" />
+    <Build Include="Scripts\add friends table.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Change User - FacebookLink.sql" />

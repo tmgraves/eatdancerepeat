@@ -11,13 +11,9 @@ namespace DPP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Teacher
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserID { get; set; }
         public int Experience { get; set; }
         public string Resume { get; set; }

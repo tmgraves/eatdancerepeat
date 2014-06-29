@@ -11,13 +11,9 @@ namespace DPP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Dancer
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserID { get; set; }
         public System.DateTime StartDate { get; set; }
     
