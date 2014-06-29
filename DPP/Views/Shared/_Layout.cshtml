@@ -21,10 +21,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
                     <li>@Html.ActionLink("Events", "Index", "Events")</li>
                     <li>@Html.ActionLink("Places", "Index", "Places")</li>
                 </ul>
@@ -39,7 +35,7 @@
             <p>&copy; @DateTime.Now.Year - Eat...Dance...Repeat</p>
         </footer>
     </div>
-
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

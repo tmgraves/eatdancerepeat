@@ -50,11 +50,11 @@ namespace DPP
                appId: "1634016200156058",
                appSecret: "17e338c89fc606e10ab6ec541671f58c");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "482025020180-4aa2sp0ah5ed0sg7k6llkqif1oa49spv.apps.googleusercontent.com",
-                ClientSecret = "hk-GgFs9li5vNM1DIreKfWta"
-            });
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "482025020180-4aa2sp0ah5ed0sg7k6llkqif1oa49spv.apps.googleusercontent.com",
+            //    ClientSecret = "hk-GgFs9li5vNM1DIreKfWta"
+            //});
         }
     }
 }
