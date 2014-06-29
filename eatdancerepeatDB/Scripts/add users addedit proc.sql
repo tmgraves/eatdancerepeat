@@ -55,6 +55,6 @@ AS
 	IF EXISTS(SELECT * FROM Users WHERE UrlName = @UrlName)
 	BEGIN
 			UPDATE		Users
-			SET			UrlName = FirstName + LastName + CAST(UserID AS varchar)
+			SET			UrlName = @UrlName
 			WHERE		UserID = @UserID
 	END
