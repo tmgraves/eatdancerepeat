@@ -1,0 +1,1 @@
+CREATE ROLE db_user
