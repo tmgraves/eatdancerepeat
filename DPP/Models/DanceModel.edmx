@@ -214,6 +214,7 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="JoinDate" Type="date" Nullable="false" />
           <Property Name="FacebookLink" Type="nvarchar" MaxLength="200" />
+          <Property Name="UrlName" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Videos">
           <Key>
@@ -757,6 +758,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="usp_Users_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="FacebookLink" Type="nvarchar" Mode="In" />
+          <Parameter Name="UrlName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Users_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="InOut" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FacebookLink" Type="nvarchar" Mode="In" />
+          <Parameter Name="UrlName" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="DanceDBModelStoreContainer">
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dancers" EntityType="Self.Dancers" Schema="dbo" store:Type="Tables" />
@@ -1189,6 +1202,7 @@
           <NavigationProperty Name="Teacher" Relationship="DanceDBModel.FK_Teachers_Users" FromRole="User" ToRole="Teacher" />
           <NavigationProperty Name="Friendships" Relationship="DanceDBModel.FK_Friendships_Users" FromRole="User" ToRole="Friendship" />
           <NavigationProperty Name="Friendships1" Relationship="DanceDBModel.FK_Friendships_Users1" FromRole="User" ToRole="Friendship" />
+          <Property Name="UrlName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Video">
           <Key>
@@ -1827,6 +1841,18 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Friendship" EntitySet="Friendships" />
           </AssociationSet>
+          <FunctionImport Name="usp_Users_Search" ReturnType="Collection(DanceDBModel.usp_Users_Search_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="FacebookLink" Mode="In" Type="String" />
+            <Parameter Name="UrlName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Users_Update">
+            <Parameter Name="UserID" Mode="InOut" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="FacebookLink" Mode="In" Type="String" />
+            <Parameter Name="UrlName" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Concert" BaseType="DanceDBModel.Event" />
         <EntityType Name="Social" BaseType="DanceDBModel.Event" />
@@ -2010,6 +2036,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="usp_Users_Search_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="JoinDate" Nullable="false" />
+          <Property Type="String" Name="FacebookLink" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="UrlName" Nullable="true" MaxLength="200" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2274,6 +2308,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DanceDBModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UrlName" ColumnName="UrlName" />
                 <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -2353,6 +2388,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_Users_Search" FunctionName="DanceDBModel.Store.usp_Users_Search">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DanceDBModel.usp_Users_Search_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
+                <ScalarProperty Name="UrlName" ColumnName="UrlName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Users_Update" FunctionName="DanceDBModel.Store.usp_Users_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2367,7 +2415,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

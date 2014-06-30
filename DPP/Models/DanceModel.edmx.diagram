@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5be3767ee2fa4b9bb6e5ba91cf6d50f6" Name="Diagram1">
+      <Diagram DiagramId="5be3767ee2fa4b9bb6e5ba91cf6d50f6" Name="Diagram1" ZoomLevel="113">
         <EntityTypeShape EntityType="DanceDBModel.Comment" Width="1.5" PointX="16" PointY="19.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DanceDBModel.EventMember" Width="1.5" PointX="6.375" PointY="15.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DanceDBModel.Event" Width="1.5" PointX="11.25" PointY="5.5" IsExpanded="true" />

@@ -314,6 +314,9 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_Users_Search_Result.cs">
+      <DependentUpon>DanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Video.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
@@ -542,7 +545,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

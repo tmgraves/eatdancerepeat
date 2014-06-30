@@ -33,6 +33,7 @@ namespace DPP.Models
         public string LastName { get; set; }
         public System.DateTime JoinDate { get; set; }
         public string FacebookLink { get; set; }
+        public string UrlName { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<EventMember> EventMembers { get; set; }
