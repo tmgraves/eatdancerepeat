@@ -70,6 +70,10 @@
     <Build Include="Scripts\6 - add db_user role.sql" />
     <Build Include="Scripts\7 - add users addedit proc.sql" />
     <Build Include="Scripts\8 - add users seach proc.sql" />
+    <Build Include="Scripts\12 - add urlname to promoters table.sql" />
+    <Build Include="Scripts\11 - add urlname to owners table.sql" />
+    <Build Include="Scripts\10 - add urlname to teachers table.sql" />
+    <Build Include="Scripts\9 - add urlname to dancer table.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\4 - Change User - FacebookLink.sql" />
