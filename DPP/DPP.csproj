@@ -320,6 +320,7 @@
     <Compile Include="Models\Video.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\ProfileIndexViewModel.cs" />
     <Compile Include="Models\Workshop.cs">
       <DependentUpon>DanceModel.tt</DependentUpon>
     </Compile>
