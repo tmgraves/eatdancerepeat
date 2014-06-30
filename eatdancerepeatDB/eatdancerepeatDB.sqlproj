@@ -74,6 +74,7 @@
     <Build Include="Scripts\11 - add urlname to owners table.sql" />
     <Build Include="Scripts\10 - add urlname to teachers table.sql" />
     <Build Include="Scripts\9 - add urlname to dancer table.sql" />
+    <Build Include="Scripts\13 - populate Users table with 2 records.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\4 - Change User - FacebookLink.sql" />
