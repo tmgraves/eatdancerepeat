@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace DPP.Models.ViewModel
 {
     public class ProfileIndexViewModel
     {
-        private DanceDBEntities _db = new DanceDBEntities();
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public ActionResult Index(string urlNameOrUserId)
+        public string FullName
         {
-           
-            if (String.IsNullOrWhiteSpace(urlNameOrUserId))
+            get
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return String.Format("{0} {1}", FirstName, LastName);
             }
-
-            return View();
         }
     }
 }

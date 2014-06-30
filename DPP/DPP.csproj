@@ -181,6 +181,7 @@
     <Compile Include="Controllers\OpenHousesController.cs" />
     <Compile Include="Controllers\PartiesController.cs" />
     <Compile Include="Controllers\PicturesController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RehearsalsController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
@@ -536,6 +537,7 @@
     <Content Include="Views\Dancers\Details.cshtml" />
     <Content Include="Views\Dancers\Edit.cshtml" />
     <Content Include="Views\Dancers\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

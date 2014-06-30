@@ -16,7 +16,7 @@ namespace DPP
             routes.MapRoute(
                 name: "Profile",
                 url: "profile/{urlNameOrUserId}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Profile", action = "Index" }
             );
 
             routes.MapRoute(
