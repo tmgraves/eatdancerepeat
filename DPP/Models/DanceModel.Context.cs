@@ -12,6 +12,8 @@ namespace DPP.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class DanceDBEntities : DbContext
     {
@@ -45,5 +47,43 @@ namespace DPP.Models
         public virtual DbSet<Promoter> Promoters { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<Friendship> Friendships { get; set; }
+    
+        public virtual ObjectResult<usp_Users_Search_Result> usp_Users_Search(Nullable<int> userID, string facebookLink, string urlName)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var facebookLinkParameter = facebookLink != null ?
+                new ObjectParameter("FacebookLink", facebookLink) :
+                new ObjectParameter("FacebookLink", typeof(string));
+    
+            var urlNameParameter = urlName != null ?
+                new ObjectParameter("UrlName", urlName) :
+                new ObjectParameter("UrlName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Users_Search_Result>("usp_Users_Search", userIDParameter, facebookLinkParameter, urlNameParameter);
+        }
+    
+        public virtual int usp_Users_Update(ObjectParameter userID, string firstName, string lastName, string facebookLink, string urlName)
+        {
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var facebookLinkParameter = facebookLink != null ?
+                new ObjectParameter("FacebookLink", facebookLink) :
+                new ObjectParameter("FacebookLink", typeof(string));
+    
+            var urlNameParameter = urlName != null ?
+                new ObjectParameter("UrlName", urlName) :
+                new ObjectParameter("UrlName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_Users_Update", userID, firstNameParameter, lastNameParameter, facebookLinkParameter, urlNameParameter);
+        }
     }
 }
