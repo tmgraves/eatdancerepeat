@@ -17,6 +17,7 @@ namespace DPP.Models
         public int UserID { get; set; }
         public int Experience { get; set; }
         public string Resume { get; set; }
+        public string UrlName { get; set; }
     
         public virtual User User { get; set; }
     }

@@ -18,6 +18,7 @@ namespace DPP.Models
         public string ContactEmail { get; set; }
         public string Website { get; set; }
         public string FacebookPage { get; set; }
+        public string UrlName { get; set; }
     
         public virtual User User { get; set; }
     }

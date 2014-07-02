@@ -47,6 +47,10 @@ namespace DPP.Models
         public virtual DbSet<Promoter> Promoters { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<Friendship> Friendships { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     
         public virtual ObjectResult<usp_Users_Search_Result> usp_Users_Search(Nullable<int> userID, string facebookLink, string urlName)
         {

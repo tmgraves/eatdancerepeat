@@ -16,6 +16,7 @@ namespace DPP.Models
     {
         public int UserID { get; set; }
         public string ContactEmail { get; set; }
+        public string UrlName { get; set; }
     
         public virtual User User { get; set; }
     }
